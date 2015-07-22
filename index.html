@@ -15,6 +15,8 @@
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script><!--引入bootstrapValidator JS插件 -->
 	<script type="text/javascript" src="js/bootstrapValidator.js"></script> 
 
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
 	
 	<title>首页</title>
 </head>
@@ -49,10 +51,10 @@
 								</ul>
 							</div><!-- header-nav结束 -->	
 
-							<form action="#" class="form-inline header-search" methed="post">
+							<form action="#" class="form-inline header-search" methed="post" id="search">
 								<div class="form-group">
-									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20"/>
-									<a href="#"><span class="glyphicon glyphicon-search"></span></a>
+									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText"/>
+									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
 								</div>
 							</form>
 							<!-- header-search 结束-->	
@@ -307,8 +309,9 @@
 	</div><!-- wrap结束-->
 
 
-	
 
+	
+	<!-- 登录注册弹出框-->
 	<div class="modal fade login-reg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     	<div class="modal-dialog modal-lg">
 			<div class="modal-content">
@@ -332,14 +335,14 @@
 					                        <div class="form-group">
 					                            <label class="col-lg-3 control-label">Email</label>
 					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="email" />
+					                                <input type="text" class="form-control" name="email" id="email"/>
 					                            </div>
 					                        </div>
 
 					                        <div class="form-group">
 					                            <label class="col-lg-3 control-label">密码</label>
 					                            <div class="col-lg-5">
-					                                <input type="password" class="form-control" name="password" />
+					                                <input type="password" class="form-control" name="password" id="password" />
 					                            </div>
 					                        </div>
 
@@ -356,7 +359,7 @@
 
 					                        <div class="form-group">
 					                            <div class="col-lg-9 col-lg-offset-3">                     
-					                                <button type="button" class="btn btn-info" id="validateBtn">登录</button>
+					                                <button type="button" class="btn btn-info" id="loginBtn">登录</button>
 					                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
 					                            </div>
 					                        </div>
@@ -390,7 +393,7 @@
 					                        <div class="form-group">
 					                            <label class="col-lg-3 control-label">Email</label>
 					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="email" />
+					                                <input type="text" class="form-control" name="email1" id="email1"/>
 					                            </div>
 					                        </div>
 
@@ -419,7 +422,7 @@
 
 					                        <div class="form-group">
 					                            <div class="col-lg-9 col-lg-offset-3">                     
-					                                <button type="button" class="btn btn-info" id="validateBtn1">注册</button>
+					                                <button type="button" class="btn btn-info" id="regBtn">注册</button>
 					                                <button type="button" class="btn btn-info" id="resetBtn1">重置</button>
 					                            </div>
 					                        </div>
@@ -430,25 +433,39 @@
 					        </div>
 					    </div>
 				    </div><!-- rgs结束-->
-				    
-				    
 				</div>
-
-				
-
 				<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				</div>
 
 			</div><!-- content结束-->
+		</div><!-- /.modal-dialog结束 -->	
+	</div><!-- /.modal结束 -->
 
 
-		</div>
-
-		
-	</div>
 
 
+	<!-- 搜索为空时弹出提示框-->
+	<div class="modal" id="searchModal"  tabindex="-1">
+	    <div class="modal-dialog">
+	    	<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">出错啦</h4>
+				</div>
+				<div class="modal-body">
+					<p>搜索框内容不能为空</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+
+<!-- 登录JS判定-->
 <script type="text/javascript">
 	$(document).ready(function() {
     // Generate a simple captcha
@@ -478,7 +495,14 @@
                     	},
 
                     	remote: {
-	                        url: '#',
+	                        url: '###.action',
+	                        type: "post",
+	                        dataType: "json",
+	                        data: {
+	                        	email: function(){
+	                        		return $('#email').val();
+	                        	}
+	                        },
 	                        message: 'Email错误'
 	                    }
 	                }
@@ -488,11 +512,7 @@
 	                validators: {
 	                    notEmpty: {
 	                        message: '密码不能为空'
-	                    },
-                        remote: {
-                            url: '#',
-                            message: '密码错误'
-                        }
+	                    }
 	                }
 	            },
           
@@ -512,7 +532,7 @@
     	});
 
     	// Validate the form manually
-    	$('#validateBtn').click(function() {
+    	$('#loginBtn').click(function() {
         	$('#loginForm').bootstrapValidator('validate');
     	});
 
@@ -523,6 +543,9 @@
 	});
 </script>
 
+
+
+<!-- 注册JS判定-->
 <script type="text/javascript">
 	$(document).ready(function() {
     // Generate a simple captcha
@@ -560,7 +583,7 @@
                 	}
            	 	},
 
-	            email: {
+	            email1: {
 	            	message: 'Email不可用',
 	                validators: {
 	                    emailAddress: {
@@ -571,8 +594,15 @@
                     	},
 
                     	remote: {
-	                        url: '#',
-	                        message: 'Email已被占用'
+	                        url: '###.action',
+	                        type: "post",
+	                        dataType: "json",
+	                        data: {
+	                        	email1: function(){
+	                        		return $('#email1').val();
+	                        	}
+	                        },
+	                        message: 'Email错误'
 	                    }
 	                }
 	            },
@@ -634,7 +664,7 @@
     	});
 
     	// Validate the form manually
-    	$('#validateBtn1').click(function() {
+    	$('#regBtn').click(function() {
         	$('#regForm').bootstrapValidator('validate');
     	});
 
@@ -644,6 +674,8 @@
 
 	});
 </script>
+
+
 
 </body>
 </html>
