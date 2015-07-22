@@ -1,0 +1,73 @@
+﻿body, p, ul, li {
+	margin: 0;
+	padding: 0}
+body {padding-top: 50px;}
+span {margin-left: 0;}
+
+.navbar{
+	background-color: #555;
+
+}
+.header-nav li{
+	font-family: "Microsoft Yahei";
+	font-size: 16px;
+}
+.header-nav li:hover {background-color: #333333;}
+
+.header {
+	width: 100%;
+}
+
+
+
+.navbar-brand {font-size: 20px;
+	font-family: "Microsoft Yahei";
+}
+
+.header-logo {width: 20%;}
+
+.header-nav {margin-left: 10%;}
+
+.header-nav li {margin-left: 0%;}
+.header-search {
+	float: left;
+	margin-left: 10%;
+	margin-top: 0.2%;
+	padding: 0.5%;
+}
+
+
+
+
+
+.header-search input {background-color: #EAEAEA;}
+
+
+
+.header-zone-login{
+	float: right;
+	margin-top: 0.6%;
+}
+
+.wrap, .carousel, .content {width: 100%;}
+
+
+.content-movie{
+	margin-top: 20px;
+	background-color: #F5F5F5;
+}
+
+.movie-info{
+	float: left;
+	margin: 1% 1%;
+}
+
+/*@media screen and(max-width: 960px) {
+	.content-movie {
+		background-color: red;
+	}
+}*/
+
+
+
+
