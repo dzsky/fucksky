@@ -7,3 +7,7 @@ function checkSearch(){
 		$("#search").submit();
 	}
 }
+
+function forwardToZone(){
+	window.location.href="zone.html";
+}
