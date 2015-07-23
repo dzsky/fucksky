@@ -51,6 +51,10 @@ span {margin-left: 0;}
 
 .wrap, .carousel, .content {width: 100%;}
 
+.container{
+	margin-left: 7.5%;
+	
+}
 
 .content-movie{
 	margin-top: 20px;
@@ -59,7 +63,7 @@ span {margin-left: 0;}
 
 .movie-info{
 	float: left;
-	margin: 1% 1%;
+	margin: 1% 1.5%;
 }
 
 .movie-info-name{
