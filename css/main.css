@@ -1,6 +1,7 @@
 ﻿body, p, ul, li {
 	margin: 0;
-	padding: 0}
+	padding: 0;
+}
 body {padding-top: 50px;}
 span {margin-left: 0;}
 
@@ -20,7 +21,7 @@ span {margin-left: 0;}
 
 
 
-.navbar-brand {font-size: 20px;
+.navbar-brand {
 	font-family: "Microsoft Yahei";
 }
 
@@ -31,46 +32,52 @@ span {margin-left: 0;}
 .header-nav li {margin-left: 0%;}
 .header-search {
 	float: left;
-	margin-left: 10%;
+	margin-left: 5%;
 	margin-top: 0.2%;
 	padding: 0.5%;
-}
+	}
 
 
 
 
-
-.header-search input {background-color: #EAEAEA;}
+.header-search input, .header-search select, .header-search option {background-color: #EAEAEA;}
 
 
 
 .header-zone-login{
-	float: right;
-	margin-top: 0.6%;
-}
+	float: right; margin-top:0.6%;}
 
-.wrap, .carousel, .content {width: 100%;}
+.wrap, .carousel, .content {width: 100%; }
+.wrap-movie {
+	top:0px;
+	margin-top:0px;
+	}
 
-.container{
-	margin-left: 7.5%;
-	
-}
 
-.content-movie{
-	margin-top: 20px;
+.index-backcolor, .audio-backcolor{
 	background-color: #F5F5F5;
 }
+.audio-backcolor{ width:1250px;}
 
-.movie-info{
+.content-movie, .content-audio{
+	margin-top: 20px;
+}
+
+.movie-info, .audio-info{
 	float: left;
 	margin: 1% 1.5%;
 }
 
-.movie-info-name{
+.audio-info{
+	margin:2% 2%;
+	margin-right: 3%;
+}
+
+.movie-info-name, .audio-info-name{
 	float: left;
 }
 
-.movie-info-view{
+.movie-info-view, .audio-info-view{
 	float: right;
 }
 
@@ -83,6 +90,7 @@ span {margin-left: 0;}
 		background-color: red;
 	}
 }*/
+
 
 
 

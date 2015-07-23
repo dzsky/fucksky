@@ -29,7 +29,7 @@
 			<div class="row">
 				<nav class="navbar navbar-default col-lg-12 navbar-fixed-top navbar-inverse" role="navigation">
 					<!-- <div class="header-logo"> -->
-						<div class="navbar-header col-lg-1">
+						<div class="navbar-header col-lg-2">
 							
 							<a href="#" class="navbar-brand "><strong>首 页</strong></a>
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
@@ -54,6 +54,16 @@
 
 							<form action="#" class="form-inline header-search" methed="post" id="search">
 								<div class="form-group">
+									<select class="form-control">
+
+								    	<option>全部</option>
+								    	<option>视频</option>
+								    	<option>音频</option>
+								    	<option>图像</option>
+								    	<option>文档</option>
+								  	</select>
+								 </div>
+								<div class="form-group">
 									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText"/>
 									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
 								</div>
@@ -74,7 +84,8 @@
 		
 
 	<div class="wrap">
-		<div class="container">
+
+		<div class="container index-backcolor">
 		<div class="carousel">
 			<div class="row col-lg-10 col-lg-offset-1">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -405,7 +416,7 @@
 					                        <h2>登录</h2>
 					                    </div>
 
-					                    <form id="loginForm" method="post" class="form-horizontal" action="#">
+					                    <form id="loginForm" method="post" class="form-horizontal" action="login.action">
 
 					                        <div class="form-group">
 					                            <label class="col-lg-3 control-label">Email</label>
@@ -434,7 +445,7 @@
 
 					                        <div class="form-group">
 					                            <div class="col-lg-9 col-lg-offset-3">                     
-					                                <button type="button" class="btn btn-info" id="loginBtn">登录</button>
+					                                <button type="submit" class="btn btn-info" id="loginBtn">登录</button>
 					                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
 					                            </div>
 					                        </div>
@@ -567,19 +578,20 @@
 	                    },
 	                    notEmpty: {
                         	message: 'Email不能为空'
-                    	},
+                    	}
+                    	// ,
 
-                    	remote: {
-	                        url: '###.action',
-	                        type: "post",
-	                        dataType: "json",
-	                        data: {
-	                        	email: function(){
-	                        		return $('#email').val();
-	                        	}
-	                        },
-	                        message: 'Email错误'
-	                    }
+                    	// remote: {
+	                    //     url: '###.action',
+	                    //     type: "post",
+	                    //     dataType: "json",
+	                    //     data: {
+	                    //     	email: function(){
+	                    //     		return $('#email').val();
+	                    //     	}
+	                    //     },
+	                    //     message: 'Email错误'
+	                    // }
 	                }
 	            },
 
@@ -609,6 +621,7 @@
     	// Validate the form manually
     	$('#loginBtn').click(function() {
         	$('#loginForm').bootstrapValidator('validate');
+        	// $('#loginForm').submit();
     	});
 
     	$('#resetBtn').click(function() {
@@ -666,19 +679,20 @@
 	                    },
 	                    notEmpty: {
                         	message: 'Email不能为空'
-                    	},
+                    	}
+                    	// ,
 
-                    	remote: {
-	                        url: '###.action',
-	                        type: "post",
-	                        dataType: "json",
-	                        data: {
-	                        	email1: function(){
-	                        		return $('#email1').val();
-	                        	}
-	                        },
-	                        message: 'Email错误'
-	                    }
+                    	// remote: {
+	                    //     url: '###.action',
+	                    //     type: "post",
+	                    //     dataType: "json",
+	                    //     data: {
+	                    //     	email1: function(){
+	                    //     		return $('#email1').val();
+	                    //     	}
+	                    //     },
+	                    //     message: 'Email错误'
+	                    // }
 	                }
 	            },
 
@@ -741,6 +755,7 @@
     	// Validate the form manually
     	$('#regBtn').click(function() {
         	$('#regForm').bootstrapValidator('validate');
+        	// $('#regForm').submit();
     	});
 
     	$('#resetBtn1').click(function() {

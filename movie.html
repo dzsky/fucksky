@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--引入bootstrap CSS样式  -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <!--引入自定义样式  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+	<!--引入bootstrapValidator样式  -->
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
+    <!--引入movie css样式  -->
+    <link rel="stylesheet" href="css/movie-style.css"/>
+	<!--引入jquery  -->
+	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
+	<!--引入bootstrap JS插件 -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<!--引入bootstrapValidator JS插件 -->
+	<script type="text/javascript" src="js/bootstrapValidator.js"></script> 
+	
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
+	<!--引入分页插件 -->
+	<script type="text/javascript" src="js/jquery.twbsPagination.js"></script>
+	<title>视频</title>
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default col-lg-12 navbar-fixed-top navbar-inverse" role="navigation">
+					<!-- <div class="header-logo"> -->
+						<div class="navbar-header col-lg-2">
+							
+							<a href="#" class="navbar-brand "><strong>首 页</strong></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+					<!-- </div> --><!-- header-logo结束 -->
+					
+					
+						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+							<div class="header-nav">
+								<ul class="nav navbar-nav">
+									<li><a href="#">视频</a></li>
+									<li><a href="#">音频</a></li>
+									<li><a href="#">图像</a></li>
+									<li><a href="#">文档</a></li>
+								</ul>
+							</div><!-- header-nav结束 -->	
+
+							<form action="#" class="form-inline header-search" methed="post" id="search">
+								<div class="form-group">
+									<select class="form-control">
+
+								    	<option>全部</option>
+								    	<option>视频</option>
+								    	<option>音频</option>
+								    	<option>图像</option>
+								    	<option>文档</option>
+								  	</select>
+								 </div>
+								<div class="form-group">
+									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText" style="width:220px;"/>
+									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
+								</div>
+							</form>
+							<!-- header-search 结束-->	
+							<div class="header-zone-login btn-group">
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+							</div>
+						</div>	
+					</nav>			
+				</div>
+			
+		</div>
+	</div><!-- header结束-->
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+
+<script type="text/javascript">
+(function () {
+    var SPEED = 500;//图片切换速度
+    var STEP = 10;//图片切换步长
+    var NUMBER = 6;//图片数量
+    var DURATION = 5000;//单张图片停留时间
+    var INTERVAL = 50;//进度条变化时间间隔
+    var PREV = 0;//上一张图片索引
+    var CURRENT = 0;//当前图片索引
+    var NEXT = CURRENT + 1;//下一张图片的索引
+    var $ = function (id) {
+        return document.getElementById(id);
+    }
+    var getNum = function (str) {
+        if (!str) {
+            return 0;
+        } else {
+            return parseInt(str.split('px')[0]);
+        }
+    }
+    //进度条动画
+    var process = (function(){
+    	var intervalId;
+    	return function (prcsswrap, drtn, intrvl, callback) {
+	        var width = prcsswrap.clientWidth;
+	        var prcss = prcsswrap.getElementsByClassName('prcss')[0];
+	        var count = drtn/intrvl;
+	        var offset = Math.floor(width/count);
+	        var tmpCurrent = CURRENT;
+	        var step = function () {
+	            if (tmpCurrent !== CURRENT) {
+	            	intervalId = clearInterval(intervalId);
+	                prcss.style.width = '0px';
+	                return;
+	            }
+	            var des = getNum(prcss.style.width) + offset;
+	            if (des < width) {
+	                prcss.style.width = getNum(prcss.style.width) + offset + 'px';
+	            } else {
+	                intervalId = clearInterval(intervalId);
+	                prcss.style.width = '0px';
+	                PREV = CURRENT;
+	                CURRENT = NEXT;
+	                NEXT++;
+	                NEXT = NEXT%NUMBER;
+	                if (callback)
+	                    callback();
+	            }
+	        }
+	        if (!!intervalId){
+	        	intervalId = clearInterval(intervalId);
+	        }
+	        intervalId = setInterval(step, intrvl);
+	    };
+    })();
+    //位移动画
+    var animation = (function(){
+    	var intervalId;
+    	return function (ele, from, to, callback) {
+	        var distance = Math.abs(to - from);
+	        var cover = 0;
+	        var symbol = (to - from)/distance;
+	        var stepLength = Math.floor((distance*STEP)/SPEED);
+	        var step = function () {
+	            var des = cover + stepLength;
+	            if (des < distance) {
+	                cover += stepLength;
+	                ele.style.left = getNum(ele.style.left) + stepLength*symbol + 'px';
+	            } else {
+	                intervalId = clearInterval(intervalId);
+	                ele.style.left = to + 'px';
+	                if (callback)
+	                    callback();
+	            }
+	        }
+	        if (!!intervalId){
+	        	intervalId = clearInterval(intervalId);
+	        }
+        	intervalId = setInterval(step, STEP);
+    	}
+    })();
+    //与DOM相关的操作要在页面加载完全之后执行
+    window.onload = function () {
+        var imgwrap = $('imgwrap');
+        var imgs = imgwrap.children;
+        var navswrap = $('navswrap');
+        var navs = navswrap.children;
+        //图片轮播动画
+        var slide = function (drtn, intrvl, callback) {
+            var from = -PREV*1224;
+            var to = -CURRENT*1224;
+            animation(imgwrap, from, to, callback);
+        }
+        //切换（进度条动画+位移动画）
+        var goOn = function (drtn, intrvl) {
+            var currentNav = navs[CURRENT];
+            var prcsswrap = currentNav.getElementsByClassName('prcsswrap')[0];
+            process(prcsswrap, drtn, intrvl, function () {
+                slide(drtn, intrvl, function () {
+                    goOn(drtn, intrvl);
+                });
+            });
+        }
+        //响应点击
+        $('navswrap').addEventListener('click', (function () {
+            var getElement = function (eve, filter) {
+                var element = eve.target;
+                while (element) {
+                    if (filter(element))
+                        return element;
+                    element = element.parentNode;
+                }
+            }
+            return function (event) {
+                var des = getElement(event, function (ele) {
+                    return (ele.className.indexOf('navwrap') !== -1);
+                })
+                var index = parseInt(des.dataset.index);
+                PREV = CURRENT;
+                CURRENT = index;
+                NEXT = (CURRENT+1)%NUMBER;
+                slide(DURATION, INTERVAL, function () {
+                    goOn(DURATION, INTERVAL);
+                });
+            }
+        })());
+        //开始动画
+        goOn(DURATION, INTERVAL);
+    }
+})()
+</script>
+
+
+
+<!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+
+	<div class="wrap-movie" style="top:auto;">
+		<div class="container audio-backcolor">
+        
+			<div class="contet-audio row">
+            
+				<div class="col-lg-12">
+                <div class="g-doc">
+    <div class="g-bd">
+        <div class="g-mn">
+            <div class="m-slides">
+                <div class="imgwrap f-cb" id="imgwrap">
+                    <div class="banner banner-0" data-index="0"></div>
+                    <div class="banner banner-1" data-index="1"></div>
+                    <div class="banner banner-2" data-index="2"></div>
+                    <div class="banner banner-3" data-index="3"></div>
+                    <div class="banner banner-4" data-index="4"></div>
+                    <div class="banner banner-5" data-index="5"></div>
+                </div>
+            </div>
+            <div class="m-nav">
+                <div class="navswrap f-cb" id="navswrap">
+                    <div class="navwrap navwrap-0" data-index="0">
+                        <div class="nav"></div>
+                        <div class="prcsswrap">
+                            <div class="prcss"></div>
+                        </div>
+                    </div>
+                    <div class="navwrap navwrap-1" data-index="1">
+                        <div class="nav"></div>
+                        <div class="prcsswrap">
+                            <div class="prcss"></div>
+                        </div>
+                    </div>
+                    <div class="navwrap navwrap-2" data-index="2">
+                        <div class="nav"></div>
+                        <div class="prcsswrap">
+                            <div class="prcss"></div>
+                        </div>
+                    </div>
+                    <div class="navwrap navwrap-3" data-index="3">
+                        <div class="nav"></div>
+                        <div class="prcsswrap">
+                            <div class="prcss"></div>
+                        </div>
+                    </div>
+                    <div class="navwrap navwrap-4" data-index="4">
+                        <div class="nav nav-4"></div>
+                        <div class="prcsswrap">
+                            <div class="prcss"></div>
+                        </div>
+                    </div>
+                    <div class="navwrap navwrap-5" data-index="5">
+                        <div class="nav"></div>
+                        <div class="prcsswrap">
+                            <div class="prcss"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+					<ul class="nav nav-tabs nav-pills">
+						<li class="active"><a href="#play" data-toggle="tab" >播放量</a></li>
+						<li><a href="#download" data-toggle="tab" onclick="getDownloadByAjax()">下载量</a></li>
+						<li><a href="#time" data-toggle="tab">上传时间</a></li>
+						<li><a href="#general" data-toggle="tab">综合</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="play">
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+							<div class="audio-info">
+								<img src="images/movie-1.jpg" alt=""/>
+								<div></div>
+								<span class="audio-info-name">音频名称</span>
+								<span class="audio-info-view">浏览量</span>
+							</div>
+						</div>
+						<div class="tab-pane" id="download">
+							下载量
+						</div>
+						<div class="tab-pane" id="time">
+							上传时间
+						</div>
+						<div class="tab-pane" id="general">
+							综合
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 分页 -->
+		<div class="container">
+			<div class="row col-lg-6 col-lg-offset-3">
+				<ul class="pagination" id="pages">
+
+				<!-- <ul class="pagination pagination">
+				  <li><a href="javascript:void(0);" onclick="page(1)" id="first">首页</a></li>
+				  <li  class="disabled"><a href="javascript:void(0);" onclick="page(previous)" id="previous">上一页</a></li>
+				  <li class="active"><a href="javascript:void(0);" onclick="page(1)" id="page1">1</a></li>
+				  <li><a href="javascript:void(0);" onclick="page(2)" id="page2">2</a></li>
+				  <li><a href="javascript:void(0);" onclick="page(3)" id="page3">3</a></li>
+				  <li><a href="javascript:void(0);" onclick="page(4)" id="page4">4</a></li>
+				  <li><a href="javascript:void(0);" onclick="page(5)" id="page5">5</a></li>
+				  <li><a href="javascript:void(0);" onclick="nextPage()" id="next">下一页</a></li>
+				  <li><a href="#">尾页</a></li>
+				</ul>  -->
+
+
+
+			</div>
+		</div>
+
+
+	</div>	
+
+
+
+
+
+<script type="text/javascript">
+	
+	// function page(page1){
+	// 	addActive(page1);
+	// 	//var page = page1;
+	// 	// alert($("#page1").text());
+		
+	// 	// page = page1;
+	// 	// $("#"+"page"+page).parent().addClass("active");
+	// }
+
+	// //求余
+	// function getCompliment(page){
+	
+	// 	// return (Integer.valueOf(page) % 5);
+	// 	if (page % 5 == 0) {
+	// 		return 5;
+	// 	};
+	// 	/*else{
+	// 		return (page % 5);
+	// 	}	
+	// }
+
+
+	// //添加active样式
+	// function addActive(page){
+	// 	if(page > 1){
+	// 		$("#previous").parent().removeClass();
+	// 	}
+	// 	else{
+	// 		$("#previous").parent().addClass("disabled");
+	// 	}
+
+	// 	for(var page1=1; page1<=5; page1++)
+	// 	{
+	// 		$("#"+"page"+page1).parent().removeClass();
+	// 	}
+	// 	var activePage = getCompliment(page);
+	// 	$("#"+"page"+activePage).parent().addClass("active");
+	// }
+
+
+	// function nextPage(){
+
+	// }*/
+	
+	// $(document).ready(function () {
+	//     $('#pages').twbsPagination({
+	//         totalPages: 30,
+	//         visiblePages: 5,
+	//         version: '1.1',
+	//         onPageClick: function (event, page) {
+	//             $('#page-content').text('Page ' + page);
+	//             alert(page);
+	//         }
+	//     });
+	// });
+	// 
+	//
+	
+	$(document).ready(function () {
+	    $('#pages').twbsPagination({
+	        totalPages: 30,
+	        visiblePages: 5,
+	        version: '1.1',
+	        onPageClick: function (event, page) {
+	            $('#page-content').text('Page ' + page);
+	            alert(page);
+	        }
+	    });
+	});
+</script>
+
+
+
+
+<!--  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
+	<!-- 登录注册弹出框-->
+	<div class="modal fade login-reg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    	<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<ul id="myTab" class="nav nav-pills" role="tablist">
+				    <li class="active"><a href="#login" role="tab" data-toggle="pill">登录</a></li>
+				    <li><a href="#rgs" role="tab" data-toggle="pill">注册</a></li>
+				</ul>
+
+				<div id="myTabContent" class="tab-content">
+				    <div class="tab-pane fade in active" id="login">
+				    	<div class="container">
+					        <div class="row">
+					            <section>
+					                <div class="col-lg-6 col-lg-offset-2">
+					                    <div class="page-header">
+					                        <h2>登录</h2>
+					                    </div>
+
+					                    <form id="loginForm" method="post" class="form-horizontal" action="#">
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">Email</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="email" id="email"/>
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="password" id="password" />
+					                            </div>
+					                        </div>
+
+					                      
+
+					                       
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
+					                            <div class="col-lg-2">
+					                                <input type="text"  class="form-control" name="captcha" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <div class="col-lg-9 col-lg-offset-3">                     
+					                                <button type="button" class="btn btn-info" id="loginBtn">登录</button>
+					                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
+					                            </div>
+					                        </div>
+					                    </form>
+					                </div>
+					            </section>
+					           
+					        </div>
+		    			</div>
+				    </div><!-- login结束-->
+
+				    <div class="tab-pane fade" id="rgs">
+				    	<div class="container">
+					        <div class="row">
+					            <!-- form: -->
+					            <section>
+					                <div class="col-lg-6 col-lg-offset-2">
+					                    <div class="page-header">
+					                        <h2>注册</h2>
+					                    </div>
+
+					                    <form id="regForm" method="post" class="form-horizontal" action="#">
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">用户名</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="username" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">Email</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="email1" id="email1"/>
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="password" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">确认密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="confirmPassword" />
+					                            </div>
+					                        </div>
+
+					                       
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label" id="captchaOperation1"></label>
+					                            <div class="col-lg-2">
+					                                <input type="text" class="form-control" name="captcha" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <div class="col-lg-9 col-lg-offset-3">                     
+					                                <button type="button" class="btn btn-info" id="regBtn">注册</button>
+					                                <button type="button" class="btn btn-info" id="resetBtn1">重置</button>
+					                            </div>
+					                        </div>
+					                    </form>
+					                </div>
+					            </section>
+					            <!-- :form -->
+					        </div>
+					    </div>
+				    </div><!-- rgs结束-->
+				</div>
+				<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div><!-- content结束-->
+		</div><!-- /.modal-dialog结束 -->	
+	</div><!-- /.modal结束 -->
+
+
+
+
+	<!-- 搜索为空时弹出提示框-->
+	<div class="modal fade" id="searchModal"  tabindex="-1">
+	    <div class="modal-dialog">
+	    	<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">出错啦</h4>
+				</div>
+				<div class="modal-body">
+					<p>搜索框内容不能为空</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+
+<!-- 登录JS判定-->
+<script type="text/javascript">
+	$(document).ready(function() {
+    // Generate a simple captcha
+    	function randomNumber(min, max) {
+       		return Math.floor(Math.random() * (max - min + 1) + min);
+    	};
+
+    	$('#captchaOperation').html([randomNumber(1, 4), '+', randomNumber(1, 4), '='].join(' '));
+
+    	$('#loginForm').bootstrapValidator({
+        	message: '不可用',
+        	feedbackIcons: {
+            	valid: 'glyphicon glyphicon-ok',
+            	invalid: 'glyphicon glyphicon-remove',
+            	validating: 'glyphicon glyphicon-refresh'
+        	},
+        	fields: {
+
+	            email: {
+	            	message: 'Email不可用',
+	                validators: {
+	                    emailAddress: {
+	                        message: '请输入有效的Email地址'
+	                    },
+	                    notEmpty: {
+                        	message: 'Email不能为空'
+                    	},
+
+                    	remote: {
+	                        url: '###.action',
+	                        type: "post",
+	                        dataType: "json",
+	                        data: {
+	                        	email: function(){
+	                        		return $('#email').val();
+	                        	}
+	                        },
+	                        message: 'Email错误'
+	                    }
+	                }
+	            },
+
+	            password: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '密码不能为空'
+	                    }
+	                }
+	            },
+          
+	            captcha: {
+	                validators: {
+	                    callback: {
+	                        message: '答案错误',
+	                        callback: function(value, validator) {
+	                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+	                            return value == sum;
+	                        }
+	                    }
+	                }
+	            }
+
+        	}
+    	});
+
+    	// Validate the form manually
+    	$('#loginBtn').click(function() {
+        	$('#loginForm').bootstrapValidator('validate');
+    	});
+
+    	$('#resetBtn').click(function() {
+        	$('#loginForm').data('bootstrapValidator').resetForm(true);
+    	});
+
+	});
+</script>
+
+
+
+<!-- 注册JS判定-->
+<script type="text/javascript">
+	$(document).ready(function() {
+    // Generate a simple captcha
+    	function randomNumber(min, max) {
+       		return Math.floor(Math.random() * (max - min + 1) + min);
+    	};
+
+    	$('#captchaOperation1').html([randomNumber(1, 4), '+', randomNumber(1, 4), '='].join(' '));
+
+    	$('#regForm').bootstrapValidator({
+        	message: '不可用',
+        	feedbackIcons: {
+            	valid: 'glyphicon glyphicon-ok',
+            	invalid: 'glyphicon glyphicon-remove',
+            	validating: 'glyphicon glyphicon-refresh'
+        	},
+        	fields: {
+     
+            	username: {
+                	
+                	validators: {
+                    	notEmpty: {
+                        	message: '用户名不能为空'
+                    	},
+                    	stringLength: {
+                        	min: 6,
+                        	max: 20,
+                        	message: '用户名必须不少于6个字符，不多于20个字符'
+                    	},
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
+	                        message: '用户名只能包含中文、字母、数字和下划线'
+	                    }
+	                   
+                	}
+           	 	},
+
+	            email1: {
+	            	message: 'Email不可用',
+	                validators: {
+	                    emailAddress: {
+	                        message: '请输入有效的Email地址'
+	                    },
+	                    notEmpty: {
+                        	message: 'Email不能为空'
+                    	},
+
+                    	remote: {
+	                        url: '###.action',
+	                        type: "post",
+	                        dataType: "json",
+	                        data: {
+	                        	email1: function(){
+	                        		return $('#email1').val();
+	                        	}
+	                        },
+	                        message: 'Email错误'
+	                    }
+	                }
+	            },
+
+	            password: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '密码不能为空'
+	                    },
+	                    stringLength: {
+                        	min: 6,
+                        	max: 16,
+                        	message: '密码必须不少于6个字符，不多于16个字符'
+                    	},
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_]+$/,
+	                        message: '用户名只能包含英文字母、数字和下划线'
+	                    },
+	                    identical: {
+	                        field: 'confirmPassword',
+	                        message: '密码和确认密码不一致'
+	                    },
+	                    different: {
+	                        field: 'username',
+	                        message: '密码不能和用户名一致'
+	                    }
+	                }
+	            },
+
+	            confirmPassword: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '两次输入密码不一致'
+	                    },
+	                    identical: {
+	                        field: 'password',
+	                        message: '密码和确认密码不一致'
+	                    },
+	                    different: {
+	                        field: 'username',
+	                        message: '密码不能和用户名一致'
+	                    }
+	                }
+	            },
+          
+	            captcha: {
+	                validators: {
+	                    callback: {
+	                        message: '答案错误',
+	                        callback: function(value, validator) {
+	                            var items = $('#captchaOperation1').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+	                            return value == sum;
+	                        }
+	                    }
+	                }
+	            }
+
+        	}
+    	});
+
+    	/*Validate the form manually
+    	$('#regBtn').click(function() {
+        	$('#regForm').bootstrapValidator('validate');
+    	});
+
+    	$('#resetBtn1').click(function() {
+        	$('#regForm').data('bootstrapValidator').resetForm(true);
+    	});
+
+	});*/
+    
+</script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--引入bootstrap CSS样式  -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <!--引入自定义样式  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+	<!--引入bootstrapValidator样式  -->
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
+	<!--引入jquery  -->
+	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
+	<!--引入bootstrap JS插件 -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<!--引入bootstrapValidator JS插件 -->
+	<script type="text/javascript" src="js/bootstrapValidator.js"></script> 
+
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
+	
+	<title>首页</title>
+</head>
+
+
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default col-lg-12 navbar-fixed-top navbar-inverse" role="navigation">
+					<!-- <div class="header-logo"> -->
+						<div class="navbar-header col-lg-2">
+							
+							<a href="#" class="navbar-brand "><strong>首 页</strong></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+					<!-- </div> --><!-- header-logo结束 -->
+					
+					
+						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+							<div class="header-nav">
+								<ul class="nav navbar-nav">
+									<li><a href="#">视频</a></li>
+									<li><a href="#">音频</a></li>
+									<li><a href="#">图像</a></li>
+									<li><a href="#">文档</a></li>
+								</ul>
+							</div><!-- header-nav结束 -->	
+
+							<form action="#" class="form-inline header-search" methed="post" id="search">
+								<div class="form-group">
+									<select class="form-control">
+
+								    	<option>全部</option>
+								    	<option>视频</option>
+								    	<option>音频</option>
+								    	<option>图像</option>
+								    	<option>文档</option>
+								  	</select>
+								 </div>
+								<div class="form-group">
+									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText"/>
+									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
+								</div>
+							</form>
+							<!-- header-search 结束-->	
+							<div class="header-zone-login btn-group">
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+							</div>
+						</div>	
+					</nav>			
+				</div>
+			
+		</div>
+	</div><!-- header结束-->
+
+	<div class="wrap">
+		<div class="headPic">
+			<div class="container">
+				<div class="row col-lg-2 col-lg-offset-4">
+					<img src="" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+	
+</body>
+</html>
