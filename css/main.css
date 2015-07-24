@@ -40,7 +40,10 @@ span {margin-left: 0;}
 
 
 
-.header-search input, .header-search select, .header-search option {background-color: #EAEAEA;}
+.header-search input, .header-search select, .header-search option {
+	background-color: #EAEAEA;
+	font-family: "Microsoft Yahei";
+}
 
 
 
@@ -91,7 +94,47 @@ span {margin-left: 0;}
 	}
 }*/
 
+.wrap-zone{
+	background-color: #EAEAEA;
+}
+.zone-user-info{
+	width: 100%;
+	
+	padding: 15px;
+	background: url(../img/background-2.jpg) repeat;
+}
+
+.addHeadPic{
+	display : block;
+}
 
 
+.headPic{
+	text-align: center;
+	
+}
 
+.zone-content{
+	width: 100%;
+	margin-top: 30px;
+}
 
+.wrap-videoPlay{
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 50px;
+	background-color: #EAEAEA;
+}
+
+.video-operate{
+	width: 100%;
+	margin-top: 30px;
+}
+
+.display{
+	display: block;
+}
+
+.none{
+	display: none;
+}

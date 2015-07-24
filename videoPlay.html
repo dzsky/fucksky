@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--引入bootstrap CSS样式  -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <!--引入自定义样式  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+	<!--引入bootstrapValidator样式  -->
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
+	<!--引入jquery  -->
+	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
+	<!--引入bootstrap JS插件 -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<!--引入bootstrapValidator JS插件 -->
+	<script type="text/javascript" src="js/bootstrapValidator.js"></script> 
+
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
+
+	<!-- 引入 Video.js 样式 -->
+	<link href="js/video-js/video-js.css" rel="stylesheet" type="text/css">
+	<!-- 引入 Video.js -->
+	<script type="text/javascript" src="js/video-js/video.js"></script>
+	<!-- 引入 Video.js语言包 -->
+	<script type="text/javascript" src="js/video-js/zh-CN.js"></script>
+	<!-- 本地flash -->
+	<script>
+	    videojs.options.flash.swf = "js/video-js/video-js.swf";
+	</script>
+	
+
+
+	<!-- 如果没有使用Modernizr，则使用以下代码做shiv -->
+	<script type="text/javascript">
+	    document.createElement('video');document.createElement('audio');document.createElement('track');
+	</script>
+
+
+
+	<title>首页</title>
+</head>
+
+
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default col-lg-12 navbar-fixed-top navbar-inverse" role="navigation">
+					<!-- <div class="header-logo"> -->
+						<div class="navbar-header col-lg-2">
+							
+							<a href="#" class="navbar-brand "><strong>首 页</strong></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+					<!-- </div> --><!-- header-logo结束 -->
+					
+					
+						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+							<div class="header-nav">
+								<ul class="nav navbar-nav">
+									<li><a href="movie.html">视频</a></li>
+									<li><a href="audio.html">音频</a></li>
+									<li><a href="#">图像</a></li>
+									<li><a href="#">文档</a></li>
+								</ul>
+							</div><!-- header-nav结束 -->	
+
+							<form action="#" class="form-inline header-search" methed="post" id="search">
+								<div class="form-group">
+									<select class="form-control">
+
+								    	<option>全部</option>
+								    	<option>视频</option>
+								    	<option>音频</option>
+								    	<option>图像</option>
+								    	<option>文档</option>
+								  	</select>
+								 </div>
+								<div class="form-group">
+									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText"/>
+									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
+								</div>
+							</form>
+							<!-- header-search 结束-->	
+							<div class="header-zone-login btn-group">
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+							</div>
+						</div>	
+					</nav>			
+				</div>
+			
+		</div>
+	</div><!-- header结束-->
+
+	<div class="wrap-videoPlay">
+		<div class="videoPlay-video">
+			<div class="container">
+				<div class="row col-lg-6 col-lg-offset-1">
+					<!-- <object class id="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="960" height="400">
+					  <param name="movie" value="flvplayer.swf">
+					  <param name="quality" value="high">
+					  <param name="allowFullScreen" value="true">
+					  <param name="FlashVars" value="vcastr_file=videos/BlueStacksBetaDemo.flv&LogoText=duomeiti&BufferTime=3&IsAutoPlay=0">
+					  <embed src="flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=videos/BlueStacksBetaDemo.flv&LogoText=duomeiti&IsAutoPlay=0" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="960" height="400"></embed>
+
+					</object> -->
+
+					<video id="example_video_1" class="video-js vjs-default-skin" controls preload="none" width="960" height="400"
+	      			poster="http://video-js.zencoder.com/oceans-clip.png"
+	      			data-setup="{}">
+				    <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+				    <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+				    <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+				    <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+				    <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+				    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+				  </video>
+				</div>
+			</div>
+		</div>
+		<div class="video-operate">
+			<div class="container">
+				<div class="row col-lg-4 col-lg-offset-5">
+					<button type="button" class="btn btn-info dispaly" id="addCollect" onclick="addCollect()">收藏</button>
+					<button type="button" class="btn btn-info none" id="deleteCollect" onclick="deleteCollect()">取消收藏</button>
+					<button type="button" class="btn btn-info" onclick="download()">下载</button>
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">评论</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- <a href="images/1.jpg" download="ceshi.jpg">下载</a> -->
+
+	
+
+
+   <div class="modal" id="collectStatus">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p>收藏</p>
+            </div>
+            <div class="modal-body">
+				
+				<p class="collectStatus">收藏成功</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+<script type="text/javascript">
+	function addCollect(){
+		$.ajax({
+            type: "POST",
+            url: "#",
+            dataType: "json",
+            data: {
+                resourceId : resourceId
+            },
+            success: function(data)
+            {
+                if (data.status)
+                {
+                    $("#addCollect").removeClass("dispaly");
+                    $("#addCollect").addClass("none");
+                    $(".collectStatus").text("收藏成功");
+      				alertCollectStatus();
+      				$("#deleteCollect").removeClass("none");
+                    $("#deleteCollect").addClass("dispaly");
+                }
+                else
+                {
+                	$(".collectStatus").text("收藏失败");
+                    alertCollectStatus();
+                }
+            },
+            error: function()
+            {
+            	$(".collectStatus").text("收藏失败");
+                alertCollectStatus();
+            }
+        });
+    }
+
+    function deleteCollect(){
+		$.ajax({
+            type: "POST",
+            url: "#",
+            dataType: "json",
+            data: {
+                resourceId : resourceId
+            },
+            success: function(data)
+            {
+                if (data.status)
+                {
+                    $("#deleteCollect").removeClass("dispaly");
+                    $("#deleteCollect").addClass("none");
+                    $(".collectStatus").text("取消收藏成功");
+                    $("#addCollect").removeClass("none");
+                    $("#addCollect").addClass("dispaly");
+      				alertCollectStatus();
+                }
+                else
+                {
+                	$(".collectStatus").text("取消收藏失败");
+                    alertCollectStatus();
+                }
+            },
+            error: function()
+            {
+
+                $(".collectStatus").text("取消收藏失败");
+                    alertCollectStatus();
+            }
+        });
+    }
+
+    function download(){
+    	window.location.href="http://www.baidu.com";
+    }
+</script>
+
+
+	
+</body>
+</html>
