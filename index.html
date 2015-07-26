@@ -45,7 +45,7 @@
 						<div class="collapse navbar-collapse " id="navbar-collapse-1">
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
-									<li><a href="movie.html">视频</a></li>
+									<li><a href="video.html">视频</a></li>
 									<li><a href="audio.html">音频</a></li>
 									<li><a href="#">图像</a></li>
 									<li><a href="#">文档</a></li>
@@ -72,6 +72,7 @@
 							<div class="header-zone-login btn-group">
 								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
 								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">蓝天白云</span></button>
 							</div>
 						</div>	
 					</nav>			
@@ -410,76 +411,18 @@
 				    <div class="tab-pane fade in active" id="login">
 				    	<div class="container">
 					        <div class="row">
+					            <!-- form: -->
 					            <section>
-					                <div class="col-lg-6 col-lg-offset-2">
+					                <div class="col-lg-8 col-lg-offset-2">
 					                    <div class="page-header">
 					                        <h2>登录</h2>
 					                    </div>
 
-					                    <form id="loginForm" method="post" class="form-horizontal" action="login.action">
-
+					                    <form id="loginForm" method="post" class="form-horizontal" action="#">					                        
 					                        <div class="form-group">
 					                            <label class="col-lg-3 control-label">Email</label>
 					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="email" id="email"/>
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">密码</label>
-					                            <div class="col-lg-5">
-					                                <input type="password" class="form-control" name="password" id="password" />
-					                            </div>
-					                        </div>
-
-					                      
-
-					                       
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
-					                            <div class="col-lg-2">
-					                                <input type="text"  class="form-control" name="captcha" />
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <div class="col-lg-9 col-lg-offset-3">                     
-					                                <button type="submit" class="btn btn-info" id="loginBtn">登录</button>
-					                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
-					                            </div>
-					                        </div>
-					                    </form>
-					                </div>
-					            </section>
-					           
-					        </div>
-		    			</div>
-				    </div><!-- login结束-->
-
-				    <div class="tab-pane fade" id="rgs">
-				    	<div class="container">
-					        <div class="row">
-					            <!-- form: -->
-					            <section>
-					                <div class="col-lg-6 col-lg-offset-2">
-					                    <div class="page-header">
-					                        <h2>注册</h2>
-					                    </div>
-
-					                    <form id="regForm" method="post" class="form-horizontal" action="#">
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">用户名</label>
-					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="username" />
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">Email</label>
-					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="email1" id="email1"/>
+					                                <input type="text" class="form-control" name="email" />
 					                            </div>
 					                        </div>
 
@@ -491,25 +434,79 @@
 					                        </div>
 
 					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">确认密码</label>
-					                            <div class="col-lg-5">
-					                                <input type="password" class="form-control" name="confirmPassword" />
-					                            </div>
-					                        </div>
-
-					                       
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label" id="captchaOperation1"></label>
+					                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
 					                            <div class="col-lg-2">
 					                                <input type="text" class="form-control" name="captcha" />
 					                            </div>
 					                        </div>
 
 					                        <div class="form-group">
-					                            <div class="col-lg-9 col-lg-offset-3">                     
-					                                <button type="button" class="btn btn-info" id="regBtn">注册</button>
-					                                <button type="button" class="btn btn-info" id="resetBtn1">重置</button>
+					                            <div class="col-lg-9 col-lg-offset-3">
+					                                <button type="submit" class="btn btn-primary" name="login" value="login">登录</button>
+					                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
+					                            </div>
+					                        </div>
+					                    </form>
+					                </div>
+					            </section>
+					            <!-- :form -->
+					        </div>
+					    </div>
+				    </div><!-- login结束-->
+
+				    <div class="tab-pane fade" id="rgs">
+				    	<div class="container">
+					        <div class="row">
+					            <!-- form: -->
+					            <section>
+					                <div class="col-lg-8 col-lg-offset-2">
+					                    <div class="page-header">
+					                        <h2>注册</h2>
+					                    </div>
+
+					                    <form id="rgsForm" method="post" class="form-horizontal" action="#">
+					                        
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">用户名</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="username" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">Email</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="rgsEmail" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="rgsPassword" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">重复密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="confirmPassword" />
+					                            </div>
+					                        </div>            
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label" id="rgsCaptchaOperation"></label>
+					                            <div class="col-lg-2">
+					                                <input type="text" class="form-control" name="rgsCaptcha" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <div class="col-lg-9 col-lg-offset-3">
+					                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">注册</button>
+					                              
+					                                <button type="button" class="btn btn-info" id="rgsResetBtn">重置</button>
 					                            </div>
 					                        </div>
 					                    </form>
@@ -559,7 +556,7 @@
        		return Math.floor(Math.random() * (max - min + 1) + min);
     	};
 
-    	$('#captchaOperation').html([randomNumber(1, 4), '+', randomNumber(1, 4), '='].join(' '));
+    	$('#captchaOperation').html([randomNumber(1, 20), '+', randomNumber(1, 20), '='].join(' '));
 
     	$('#loginForm').bootstrapValidator({
         	message: '不可用',
@@ -578,20 +575,12 @@
 	                    },
 	                    notEmpty: {
                         	message: 'Email不能为空'
-                    	}
-                    	// ,
-
-                    	// remote: {
-	                    //     url: '###.action',
-	                    //     type: "post",
-	                    //     dataType: "json",
-	                    //     data: {
-	                    //     	email: function(){
-	                    //     		return $('#email').val();
-	                    //     	}
-	                    //     },
-	                    //     message: 'Email错误'
-	                    // }
+                    	},
+                    	remote: {
+	                        url: '#',
+	                        type: 'POST',  
+	                        message: 'Email错误'
+	                    }
 	                }
 	            },
 
@@ -641,9 +630,9 @@
        		return Math.floor(Math.random() * (max - min + 1) + min);
     	};
 
-    	$('#captchaOperation1').html([randomNumber(1, 4), '+', randomNumber(1, 4), '='].join(' '));
+    	$('#rgsCaptchaOperation').html([randomNumber(1, 20), '+', randomNumber(1, 20), '='].join(' '));
 
-    	$('#regForm').bootstrapValidator({
+    	$('#rgsForm').bootstrapValidator({
         	message: '不可用',
         	feedbackIcons: {
             	valid: 'glyphicon glyphicon-ok',
@@ -671,7 +660,7 @@
                 	}
            	 	},
 
-	            email1: {
+	            rgsEmail: {
 	            	message: 'Email不可用',
 	                validators: {
 	                    emailAddress: {
@@ -679,24 +668,18 @@
 	                    },
 	                    notEmpty: {
                         	message: 'Email不能为空'
-                    	}
-                    	// ,
+                    	},
+                    	
 
-                    	// remote: {
-	                    //     url: '###.action',
-	                    //     type: "post",
-	                    //     dataType: "json",
-	                    //     data: {
-	                    //     	email1: function(){
-	                    //     		return $('#email1').val();
-	                    //     	}
-	                    //     },
-	                    //     message: 'Email错误'
-	                    // }
+                    	remote: {
+	                        url: '#',
+	                        type: "post",
+	                        message: 'Email错误'
+	                    }
 	                }
 	            },
 
-	            password: {
+	            rgsPassword: {
 	                validators: {
 	                    notEmpty: {
 	                        message: '密码不能为空'
@@ -727,7 +710,7 @@
 	                        message: '两次输入密码不一致'
 	                    },
 	                    identical: {
-	                        field: 'password',
+	                        field: 'rgsPassword',
 	                        message: '密码和确认密码不一致'
 	                    },
 	                    different: {
@@ -737,12 +720,12 @@
 	                }
 	            },
           
-	            captcha: {
+	            rgsCaptcha: {
 	                validators: {
 	                    callback: {
 	                        message: '答案错误',
 	                        callback: function(value, validator) {
-	                            var items = $('#captchaOperation1').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+	                            var items = $('#rgsCaptchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
 	                            return value == sum;
 	                        }
 	                    }
@@ -753,13 +736,13 @@
     	});
 
     	// Validate the form manually
-    	$('#regBtn').click(function() {
-        	$('#regForm').bootstrapValidator('validate');
+    	$('#rgsBtn').click(function() {
+        	$('#rgsForm').bootstrapValidator('validate');
         	// $('#regForm').submit();
     	});
 
-    	$('#resetBtn1').click(function() {
-        	$('#regForm').data('bootstrapValidator').resetForm(true);
+    	$('#rgsResetBtn').click(function() {
+        	$('#rgsForm').data('bootstrapValidator').resetForm(true);
     	});
 
 	});

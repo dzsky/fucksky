@@ -39,7 +39,7 @@
 
 
 
-	<title>首页</title>
+	<title>播放</title>
 </head>
 
 
@@ -65,7 +65,7 @@
 						<div class="collapse navbar-collapse " id="navbar-collapse-1">
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
-									<li><a href="movie.html">视频</a></li>
+									<li><a href="video.html">视频</a></li>
 									<li><a href="audio.html">音频</a></li>
 									<li><a href="#">图像</a></li>
 									<li><a href="#">文档</a></li>
@@ -132,7 +132,7 @@
 					<button type="button" class="btn btn-info dispaly" id="addCollect" onclick="addCollect()">收藏</button>
 					<button type="button" class="btn btn-info none" id="deleteCollect" onclick="deleteCollect()">取消收藏</button>
 					<button type="button" class="btn btn-info" onclick="download()">下载</button>
-					<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">评论</button>
+					<button type="button" class="btn btn-info" data-toggle="modal" data-target="coment">评论</button>
 				</div>
 			</div>
 		</div>
@@ -145,6 +145,24 @@
 
 
    <div class="modal" id="collectStatus">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p>收藏</p>
+            </div>
+            <div class="modal-body">
+				
+				<p class="collectStatus">收藏成功</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal" id="coment">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
