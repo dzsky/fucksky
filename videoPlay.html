@@ -51,8 +51,8 @@
 					<!-- <div class="header-logo"> -->
 						<div class="navbar-header col-lg-2">
 							
-							<a href="#" class="navbar-brand "><strong>首 页</strong></a>
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<a href="index.html" class="navbar-brand "><strong>首 页</strong></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -62,7 +62,7 @@
 					<!-- </div> --><!-- header-logo结束 -->
 					
 					
-						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+						<div class="collapse navbar-collapse " id="navbar-collapse">
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
 									<li><a href="video.html">视频</a></li>
@@ -76,11 +76,11 @@
 								<div class="form-group">
 									<select class="form-control">
 
-								    	<option>全部</option>
-								    	<option>视频</option>
-								    	<option>音频</option>
-								    	<option>图像</option>
-								    	<option>文档</option>
+								    	<option value="all">全部</option>
+								    	<option value="video">视频</option>
+								    	<option value="audio">音频</option>
+								    	<option value="picture">图像</option>
+								    	<option value="document">文档</option>
 								  	</select>
 								 </div>
 								<div class="form-group">
@@ -92,6 +92,7 @@
 							<div class="header-zone-login btn-group">
 								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
 								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">蓝天白云</span></button>
 							</div>
 						</div>	
 					</nav>			

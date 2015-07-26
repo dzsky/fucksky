@@ -31,8 +31,8 @@
 					<!-- <div class="header-logo"> -->
 						<div class="navbar-header col-lg-2">
 							
-							<a href="#" class="navbar-brand "><strong>首 页</strong></a>
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<a href="index.html" class="navbar-brand "><strong>首 页</strong></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -42,7 +42,7 @@
 					<!-- </div> --><!-- header-logo结束 -->
 					
 					
-						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+						<div class="collapse navbar-collapse " id="navbar-collapse">
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
 									<li><a href="video.html">视频</a></li>
@@ -56,11 +56,11 @@
 								<div class="form-group">
 									<select class="form-control">
 
-								    	<option>全部</option>
-								    	<option>视频</option>
-								    	<option>音频</option>
-								    	<option>图像</option>
-								    	<option>文档</option>
+								    	<option value="all">全部</option>
+								    	<option value="video">视频</option>
+								    	<option value="audio">音频</option>
+								    	<option value="picture">图像</option>
+								    	<option value="document">文档</option>
 								  	</select>
 								 </div>
 								<div class="form-group">
@@ -89,11 +89,11 @@
 		<div class="container index-backcolor">
 		<div class="carousel">
 			<div class="row col-lg-12 ">
-				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				<div id="carousel" class="carousel slide" data-ride="carousel">
 		  			<ol class="carousel-indicators">
-			    		<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-			    		<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-			    		<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+			    		<li data-target="#carousel" data-slide-to="0" class="active"></li>
+			    		<li data-target="#carousel" data-slide-to="1"></li>
+			    		<li data-target="#carousel" data-slide-to="2"></li>
 		  			</ol>
 		  			<div class="carousel-inner" role="listbox">
 		   	 			<div class="item active">
@@ -115,11 +115,11 @@
 					      	</div>
 		    			</div>
 		  			</div>
-		  			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+		  			<a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
 			    		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 			    		<span class="sr-only">Previous</span>
 		  			</a>
-		  			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+		  			<a class="right carousel-control" href="#carousel" role="button" data-slide="next">
 			    		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			    		<span class="sr-only">Next</span>
 		  			</a>
@@ -399,9 +399,12 @@
 
 	
 	<!-- 登录注册弹出框-->
-	<div class="modal fade login-reg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal fade login-reg" tabindex="-1" role="dialog" aria-labelledby="LargeModalLabel" aria-hidden="true">
     	<div class="modal-dialog modal-lg">
 			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				</div>
 				<ul id="myTab" class="nav nav-pills" role="tablist">
 				    <li class="active"><a href="#login" role="tab" data-toggle="pill">登录</a></li>
 				    <li><a href="#rgs" role="tab" data-toggle="pill">注册</a></li>
@@ -551,7 +554,7 @@
 <!-- 登录JS判定-->
 <script type="text/javascript">
 	$(document).ready(function() {
-    // Generate a simple captcha
+   
     	function randomNumber(min, max) {
        		return Math.floor(Math.random() * (max - min + 1) + min);
     	};
@@ -607,10 +610,10 @@
         	}
     	});
 
-    	// Validate the form manually
+    	
     	$('#loginBtn').click(function() {
         	$('#loginForm').bootstrapValidator('validate');
-        	// $('#loginForm').submit();
+        	
     	});
 
     	$('#resetBtn').click(function() {
@@ -625,7 +628,7 @@
 <!-- 注册JS判定-->
 <script type="text/javascript">
 	$(document).ready(function() {
-    // Generate a simple captcha
+    
     	function randomNumber(min, max) {
        		return Math.floor(Math.random() * (max - min + 1) + min);
     	};
@@ -691,7 +694,7 @@
                     	},
 	                    regexp: {
 	                        regexp: /^[a-zA-Z0-9_]+$/,
-	                        message: '用户名只能包含英文字母、数字和下划线'
+	                        message: '密码只能包含英文字母、数字和下划线'
 	                    },
 	                    identical: {
 	                        field: 'confirmPassword',
@@ -735,10 +738,10 @@
         	}
     	});
 
-    	// Validate the form manually
+    	
     	$('#rgsBtn').click(function() {
         	$('#rgsForm').bootstrapValidator('validate');
-        	// $('#regForm').submit();
+        	
     	});
 
     	$('#rgsResetBtn').click(function() {

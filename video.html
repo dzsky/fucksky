@@ -33,7 +33,7 @@
 						<div class="navbar-header col-lg-2">
 							
 							<a href="index.html" class="navbar-brand "><strong>首 页</strong></a>
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -43,10 +43,10 @@
 					<!-- </div> --><!-- header-logo结束 -->
 					
 					
-						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+						<div class="collapse navbar-collapse " id="navbar-collapse">
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
-									<li class="active"><a href="video.html">视频</a></li>
+									<li><a href="video.html">视频</a></li>
 									<li><a href="audio.html">音频</a></li>
 									<li><a href="#">图像</a></li>
 									<li><a href="#">文档</a></li>
@@ -57,15 +57,15 @@
 								<div class="form-group">
 									<select class="form-control">
 
-								    	<option>全部</option>
-								    	<option>视频</option>
-								    	<option>音频</option>
-								    	<option>图像</option>
-								    	<option>文档</option>
+								    	<option value="all">全部</option>
+								    	<option value="video">视频</option>
+								    	<option value="audio">音频</option>
+								    	<option value="picture">图像</option>
+								    	<option value="document">文档</option>
 								  	</select>
 								 </div>
 								<div class="form-group">
-									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText" style="width:220px;"/>
+									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText"/>
 									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
 								</div>
 							</form>
@@ -73,6 +73,7 @@
 							<div class="header-zone-login btn-group">
 								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
 								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">蓝天白云</span></button>
 							</div>
 						</div>	
 					</nav>			
@@ -379,135 +380,7 @@
 
 <!--  |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
 	<!-- 登录注册弹出框-->
-	<div class="modal fade login-reg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    	<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<ul id="myTab" class="nav nav-pills" role="tablist">
-				    <li class="active"><a href="#login" role="tab" data-toggle="pill">登录</a></li>
-				    <li><a href="#rgs" role="tab" data-toggle="pill">注册</a></li>
-				</ul>
-
-				<div id="myTabContent" class="tab-content">
-				    <div class="tab-pane fade in active" id="login">
-				    	<div class="container">
-					        <div class="row">
-					            <section>
-					                <div class="col-lg-6 col-lg-offset-2">
-					                    <div class="page-header">
-					                        <h2>登录</h2>
-					                    </div>
-
-					                    <form id="loginForm" method="post" class="form-horizontal" action="#">
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">Email</label>
-					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="email" id="email"/>
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">密码</label>
-					                            <div class="col-lg-5">
-					                                <input type="password" class="form-control" name="password" id="password" />
-					                            </div>
-					                        </div>
-
-					                      
-
-					                       
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
-					                            <div class="col-lg-2">
-					                                <input type="text"  class="form-control" name="captcha" />
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <div class="col-lg-9 col-lg-offset-3">                     
-					                                <button type="button" class="btn btn-info" id="loginBtn">登录</button>
-					                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
-					                            </div>
-					                        </div>
-					                    </form>
-					                </div>
-					            </section>
-					           
-					        </div>
-		    			</div>
-				    </div><!-- login结束-->
-
-				    <div class="tab-pane fade" id="rgs">
-				    	<div class="container">
-					        <div class="row">
-					            <!-- form: -->
-					            <section>
-					                <div class="col-lg-6 col-lg-offset-2">
-					                    <div class="page-header">
-					                        <h2>注册</h2>
-					                    </div>
-
-					                    <form id="regForm" method="post" class="form-horizontal" action="#">
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">用户名</label>
-					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="username" />
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">Email</label>
-					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="email1" id="email1"/>
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">密码</label>
-					                            <div class="col-lg-5">
-					                                <input type="password" class="form-control" name="password" />
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label">确认密码</label>
-					                            <div class="col-lg-5">
-					                                <input type="password" class="form-control" name="confirmPassword" />
-					                            </div>
-					                        </div>
-
-					                       
-
-					                        <div class="form-group">
-					                            <label class="col-lg-3 control-label" id="captchaOperation1"></label>
-					                            <div class="col-lg-2">
-					                                <input type="text" class="form-control" name="captcha" />
-					                            </div>
-					                        </div>
-
-					                        <div class="form-group">
-					                            <div class="col-lg-9 col-lg-offset-3">                     
-					                                <button type="button" class="btn btn-info" id="regBtn">注册</button>
-					                                <button type="button" class="btn btn-info" id="resetBtn1">重置</button>
-					                            </div>
-					                        </div>
-					                    </form>
-					                </div>
-					            </section>
-					            <!-- :form -->
-					        </div>
-					    </div>
-				    </div><!-- rgs结束-->
-				</div>
-				<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				</div>
-
-			</div><!-- content结束-->
-		</div><!-- /.modal-dialog结束 -->	
-	</div><!-- /.modal结束 -->
+	
 
 
 
@@ -532,216 +405,7 @@
 
 
 
-<!-- 登录JS判定-->
-<script type="text/javascript">
-	$(document).ready(function() {
-    // Generate a simple captcha
-    	function randomNumber(min, max) {
-       		return Math.floor(Math.random() * (max - min + 1) + min);
-    	};
 
-    	$('#captchaOperation').html([randomNumber(1, 4), '+', randomNumber(1, 4), '='].join(' '));
-
-    	$('#loginForm').bootstrapValidator({
-        	message: '不可用',
-        	feedbackIcons: {
-            	valid: 'glyphicon glyphicon-ok',
-            	invalid: 'glyphicon glyphicon-remove',
-            	validating: 'glyphicon glyphicon-refresh'
-        	},
-        	fields: {
-
-	            email: {
-	            	message: 'Email不可用',
-	                validators: {
-	                    emailAddress: {
-	                        message: '请输入有效的Email地址'
-	                    },
-	                    notEmpty: {
-                        	message: 'Email不能为空'
-                    	},
-
-                    	remote: {
-	                        url: '###.action',
-	                        type: "post",
-	                        dataType: "json",
-	                        data: {
-	                        	email: function(){
-	                        		return $('#email').val();
-	                        	}
-	                        },
-	                        message: 'Email错误'
-	                    }
-	                }
-	            },
-
-	            password: {
-	                validators: {
-	                    notEmpty: {
-	                        message: '密码不能为空'
-	                    }
-	                }
-	            },
-          
-	            captcha: {
-	                validators: {
-	                    callback: {
-	                        message: '答案错误',
-	                        callback: function(value, validator) {
-	                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-	                            return value == sum;
-	                        }
-	                    }
-	                }
-	            }
-
-        	}
-    	});
-
-    	// Validate the form manually
-    	$('#loginBtn').click(function() {
-        	$('#loginForm').bootstrapValidator('validate');
-    	});
-
-    	$('#resetBtn').click(function() {
-        	$('#loginForm').data('bootstrapValidator').resetForm(true);
-    	});
-
-	});
-</script>
-
-
-
-<!-- 注册JS判定-->
-<script type="text/javascript">
-	$(document).ready(function() {
-    // Generate a simple captcha
-    	function randomNumber(min, max) {
-       		return Math.floor(Math.random() * (max - min + 1) + min);
-    	};
-
-    	$('#captchaOperation1').html([randomNumber(1, 4), '+', randomNumber(1, 4), '='].join(' '));
-
-    	$('#regForm').bootstrapValidator({
-        	message: '不可用',
-        	feedbackIcons: {
-            	valid: 'glyphicon glyphicon-ok',
-            	invalid: 'glyphicon glyphicon-remove',
-            	validating: 'glyphicon glyphicon-refresh'
-        	},
-        	fields: {
-     
-            	username: {
-                	
-                	validators: {
-                    	notEmpty: {
-                        	message: '用户名不能为空'
-                    	},
-                    	stringLength: {
-                        	min: 6,
-                        	max: 20,
-                        	message: '用户名必须不少于6个字符，不多于20个字符'
-                    	},
-	                    regexp: {
-	                        regexp: /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
-	                        message: '用户名只能包含中文、字母、数字和下划线'
-	                    }
-	                   
-                	}
-           	 	},
-
-	            email1: {
-	            	message: 'Email不可用',
-	                validators: {
-	                    emailAddress: {
-	                        message: '请输入有效的Email地址'
-	                    },
-	                    notEmpty: {
-                        	message: 'Email不能为空'
-                    	},
-
-                    	remote: {
-	                        url: '###.action',
-	                        type: "post",
-	                        dataType: "json",
-	                        data: {
-	                        	email1: function(){
-	                        		return $('#email1').val();
-	                        	}
-	                        },
-	                        message: 'Email错误'
-	                    }
-	                }
-	            },
-
-	            password: {
-	                validators: {
-	                    notEmpty: {
-	                        message: '密码不能为空'
-	                    },
-	                    stringLength: {
-                        	min: 6,
-                        	max: 16,
-                        	message: '密码必须不少于6个字符，不多于16个字符'
-                    	},
-	                    regexp: {
-	                        regexp: /^[a-zA-Z0-9_]+$/,
-	                        message: '用户名只能包含英文字母、数字和下划线'
-	                    },
-	                    identical: {
-	                        field: 'confirmPassword',
-	                        message: '密码和确认密码不一致'
-	                    },
-	                    different: {
-	                        field: 'username',
-	                        message: '密码不能和用户名一致'
-	                    }
-	                }
-	            },
-
-	            confirmPassword: {
-	                validators: {
-	                    notEmpty: {
-	                        message: '两次输入密码不一致'
-	                    },
-	                    identical: {
-	                        field: 'password',
-	                        message: '密码和确认密码不一致'
-	                    },
-	                    different: {
-	                        field: 'username',
-	                        message: '密码不能和用户名一致'
-	                    }
-	                }
-	            },
-          
-	            captcha: {
-	                validators: {
-	                    callback: {
-	                        message: '答案错误',
-	                        callback: function(value, validator) {
-	                            var items = $('#captchaOperation1').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
-	                            return value == sum;
-	                        }
-	                    }
-	                }
-	            }
-
-        	}
-    	});
-
-    	/*Validate the form manually
-    	$('#regBtn').click(function() {
-        	$('#regForm').bootstrapValidator('validate');
-    	});
-
-    	$('#resetBtn1').click(function() {
-        	$('#regForm').data('bootstrapValidator').resetForm(true);
-    	});
-
-	});*/
-    
-</script>
 </body>
 </html>
 </body>

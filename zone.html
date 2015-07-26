@@ -39,7 +39,7 @@
 						<div class="navbar-header col-lg-2">
 							
 							<a href="index.html" class="navbar-brand "><strong>首 页</strong></a>
-							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
 								<span class="icon-bar"></span>
@@ -49,7 +49,7 @@
 					<!-- </div> --><!-- header-logo结束 -->
 					
 					
-						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+						<div class="collapse navbar-collapse " id="navbar-collapse">
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
 									<li><a href="video.html">视频</a></li>
@@ -63,11 +63,11 @@
 								<div class="form-group">
 									<select class="form-control">
 
-								    	<option>全部</option>
-								    	<option>视频</option>
-								    	<option>音频</option>
-								    	<option>图像</option>
-								    	<option>文档</option>
+								    	<option value="all">全部</option>
+								    	<option value="video">视频</option>
+								    	<option value="audio">音频</option>
+								    	<option value="picture">图像</option>
+								    	<option value="document">文档</option>
 								  	</select>
 								 </div>
 								<div class="form-group">
@@ -77,8 +77,8 @@
 							</form>
 							<!-- header-search 结束-->	
 							<div class="header-zone-login btn-group">
-								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
-								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">退出</button>
+								<button type="button" class="btn btn-info" >退出</button>
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">蓝天白云</span></button>
 							</div>
 						</div>	
 					</nav>			
@@ -114,9 +114,11 @@
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="upload">
-								<form action=".action" enctype="multipart/form-data" >
-									<input id="input-upload" type="file">
+								<form enctype="multipart/form-data" method="post" action="upload.php">
+									<input id="input-upload" type="file" name="file" multiple class="file-loading">
+
 								</form>
+								<!-- multiple class="file-loading" -->
 
 							</div><!--upload结束 -->
 							<div class="tab-pane" id="myUpload">
@@ -280,20 +282,47 @@
 						</form>
 					</div>
 					<div class="tab-pane" id="updateUsername">
-						<form role="form">
-						  	<div class="form-group">						    
-						    	<input type="text" class="form-control" placeholder="输入用户名">
+						<form role="form" id="rename" class="form-horizontal zone-update-margin">
+						  	<div class="form-group">
+						  		<label class="col-lg-3 control-label">用户名</label>
+						  		<div class="col-lg-5">    
+						    		<input type="text" class="form-control" name="username">
+						    	</div>
 							</div>
+							<div class="form-group">
+	                            <div class="col-lg-9 col-lg-offset-4">
+	                                <button type="button" class="btn btn-primary" name="rename">修改</button>
+	                                <button type="button" class="btn btn-info" id="renameResetBtn">重置</button>
+	                            </div>
+	                        </div>
 						</form> 
 					</div>
 					<div class="tab-pane" id="updatePassword">
-						<form role="form" action="#" method="post">
-						  	<div class="form-group">						    
-						    	<input type="text" class="form-control" placeholder="输入正在使用的密码">
-						    	<input type="text" class="form-control" placeholder="输入新密码">
-						    	<input type="text" class="form-control" placeholder="确认新密码">
-						    	<button type="submit" class="btn btn-primary" >修改</button>
+						<form role="form" action="#" method="post" id="repwd" class="form-horizontal zone-update-margin">
+						  	<div class="form-group">
+						  		<label class="col-lg-3 control-label">正在使用的密码</label>
+						  		<div class="col-lg-5">		    
+						    		<input type="text" class="form-control"  name="nowpwd">
+						    	</div>
+						    </div>
+						    <div class="form-group">
+						    	<label class="col-lg-3 control-label">新密码</label>
+						  		<div class="col-lg-5">	
+						    		<input type="text" class="form-control"  name="newpwd">
+						    	</div>
+						    </div>
+						    <div class="form-group">
+						    	<label class="col-lg-3 control-label">确认新密码</label>
+						  		<div class="col-lg-5">
+						    		<input type="text" class="form-control"  name="confirmpwd">
+						    	</div>
 							</div>
+							<div class="form-group">
+	                            <div class="col-lg-9 col-lg-offset-4">
+	                                <button type="button" class="btn btn-primary" name="repwd">修改</button>
+	                                <button type="button" class="btn btn-info" id="repwdResetBtn">重置</button>
+	                            </div>
+	                        </div>
 						</form> 
 					</div>
 				</div>
@@ -339,6 +368,7 @@
 	// 
 	
 		$(document).ready(function () {
+
 		    $('#uploadPages').twbsPagination({
 		        totalPages: 30,
 		        visiblePages: 5,
@@ -365,12 +395,97 @@
 		        visiblePages: 5,
 		        version: '1.1',
 		        onPageClick: function (event, page) {
-		            $('#page-content').text('Page ' + page);
-		            
+		            $('#page-content').text('Page ' + page);      
 		        }
 		    });
-		    
-		});
+
+		    // 验证修改用户名的合法性
+		    $("#rename").bootstrapValidator({
+		    	message: '不可用',
+		    	feedbackIcons: {
+            		valid: 'glyphicon glyphicon-ok',
+            		invalid: 'glyphicon glyphicon-remove',
+            		validating: 'glyphicon glyphicon-refresh'
+        		},
+        		fields:{
+        			username: {
+	                	validators: {
+	                    	notEmpty: {
+	                        	message: '用户名不能为空'
+	                    	},
+	                    	stringLength: {
+	                        	min: 6,
+	                        	max: 20,
+	                        	message: '用户名必须不少于6个字符，不多于20个字符'
+	                    	},
+		                    regexp: {
+		                        regexp: /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
+		                        message: '用户名只能包含中文、字母、数字和下划线'
+		                    } 
+	                	}
+	           	 	}
+        		}
+		    });
+		    $('#renameResetBtn').click(function() {
+        		$('#rename').data('bootstrapValidator').resetForm(true);
+        	});
+
+		    //验证用户修改密码的合法性
+		    $("#repwd").bootstrapValidator({
+		    	message: '不可用',
+		    	feedbackIcons: {
+		    		valid: 'glyphicon glyphicon-ok',
+            		invalid: 'glyphicon glyphicon-remove',
+            		validating: 'glyphicon glyphicon-refresh'
+		    	},
+		    	fields: {
+		    		nowpwd: {
+		    			validators: {
+		    				notEmpty: {
+		    					message: '正在使用的密码不能为空'
+		    				},
+		    				different: {
+		    					field: 'newpwd',
+		    					message: '正在使用的密码不能和新密码一致'
+		    				}
+		    			}
+		    		},
+		    		newpwd: {
+	                	validators: {
+	                    	notEmpty: {
+	                        	message: '密码不能为空'
+	                    	},
+	                    	stringLength: {
+                        		min: 6,
+                        		max: 16,
+                        		message: '密码必须不少于6个字符，不多于16个字符'
+                    		},
+	                    	regexp: {
+	                        	regexp: /^[a-zA-Z0-9_]+$/,
+	                        	message: '密码只能包含英文字母、数字和下划线'
+	                    	},
+	                    	identical: {
+	                        	field: 'confirmpwd',
+	                        	message: '密码和确认密码不一致'
+	                    	}
+	                	}
+	            	},
+	            	confirmpwd: {
+	                	validators: {
+	                    	notEmpty: {
+	                        	message: '两次输入密码不一致'
+	                    	},
+	                    	identical: {
+	                        	field: 'newpwd',
+	                        	message: '密码和确认密码不一致'
+	                    	}
+	                	}
+	            	}
+		    	}
+		    });
+			$('#repwdResetBtn').click(function() {
+        		$('#repwd').data('bootstrapValidator').resetForm(true);
+        	});
 
 
 
@@ -385,6 +500,13 @@
 		uploadClass: "btn btn-info",
 		uploadLabel: "上传",
 		uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
+		allowedFileExtensions : ['jpg', 'png','mp3','html','doc','mp4','pdf','flv'],
+		showUpload: true,
+		maxFileSize: 100000,
+        maxFileCount: 1,
+        uploadUrl: 'upload.php',
+        uploadAsync: true,
+        
 	});
 
 	$("#userInfoUpload").fileinput({
@@ -397,7 +519,12 @@
 			uploadClass: "btn btn-info",
 			uploadLabel: "上传",
 			uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
+			allowedFileExtensions : ['jpg', 'png','jpeg'],
+			maxFileSize: 1000,
+        	maxFilesNum: 1,
 		});
+
+});
 	
 </script>
 	
