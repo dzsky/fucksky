@@ -23,6 +23,8 @@
 	<link href="js/video-js/video-js.css" rel="stylesheet" type="text/css">
 	<!-- 引入 Video.js -->
 	<script type="text/javascript" src="js/video-js/video.js"></script>
+	<!--引入分页插件 -->
+	<script type="text/javascript" src="js/jquery.twbsPagination.js"></script>
 	<!-- 引入 Video.js语言包 -->
 	<script type="text/javascript" src="js/video-js/zh-CN.js"></script>
 	<!-- 本地flash -->
@@ -133,10 +135,64 @@
 					<button type="button" class="btn btn-info dispaly" id="addCollect" onclick="addCollect()">收藏</button>
 					<button type="button" class="btn btn-info none" id="deleteCollect" onclick="deleteCollect()">取消收藏</button>
 					<button type="button" class="btn btn-info" onclick="download()">下载</button>
-					<button type="button" class="btn btn-info" data-toggle="modal" data-target="coment">评论</button>
 				</div>
 			</div>
-		</div>
+			<br>
+			<div class="container ">
+				<div class="row col-lg-10 col-lg-offset-1 ">
+					<div class="panel-group" id="accordion">
+					    <div class="panel panel-default comment-back-color">
+					        <div class="panel-heading">
+					            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><button type="button" class="btn btn-info">评论 <span class="badge">42</span></button></a></h4>
+					        </div>
+					        <div id="collapseOne" class="panel-collapse collapse in">
+					            <div class="panel-body">
+					            	<div class="panel panel-info">
+									    <div class="panel-heading">大漠 <span style="float:right">2015.07.27 16:21</span></div>
+									    <div class="panel-body">			详细讲解了选择器、边框、背景、文本、颜色、盒模型、伸缩布局盒模型、多列布局、渐变、过渡、动画、媒体、响应Web设计、Web字体等主题下涵盖的所有CSS3新特性
+										</div>
+									</div>
+					            </div>
+					            <div class="panel-body">
+					            	<div class="panel panel-info">
+									    <div class="panel-heading">大漠 <span style="float:right">2015.07.27 16:21</span></div>
+									    <div class="panel-body">			详细讲解了选择器、边框、背景、文本、颜色、盒模型、伸缩布局盒模型、多列布局、渐变、过渡、动画、媒体、响应Web设计、Web字体等主题下涵盖的所有CSS3新特性
+										</div>
+									</div>
+					            </div>
+					            <div class="container">
+									<div class="row col-lg-6 col-lg-offset-2">
+										<ul class="pagination" id="coment-page">
+										</ul>
+									</div>
+								</div>
+					        </div>
+					    </div><!-- 他人评论结束-->
+					    <div class="panel panel-default comment-back-color" >
+					        <div class="panel-heading">
+					            <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><button type="button" class="btn btn-info">添加评论</button></a></h4>
+					        </div>
+					        <div id="collapseTwo" class="panel-collapse collapse">
+					            <div class="panel-body">
+					            	<div class="form-group">
+								  		<div class="col-lg-5"> 
+								  			<form action="#.action" method="post">
+									    		<textarea class="form-control" rows="3" name="comment-content"></textarea>
+									    		<br>
+									    		<button type="submit" class="btn btn-primary col-lg-3 col-lg-offset-4">提交</button>
+								    		</form>   
+								    	</div>
+									</div>
+					            </div>
+					        </div>
+					    </div><!-- 添加评论结束-->
+					</div>
+				</div>
+			</div><!-- 评论和添加评论结束-->
+			
+		</div><!-- video-operate-->
+
+		
 	</div>
 
 
@@ -183,6 +239,18 @@
 
 
 <script type="text/javascript">
+	$(document).ready(function () {
+	    $('#coment-page').twbsPagination({
+	        totalPages: 30,
+	        visiblePages: 5,
+	        version: '1.1',
+	        onPageClick: function (event, page) {
+	            $('#page-content').text('Page ' + page);
+	         
+	        }
+	    });
+	});
+
 	function addCollect(){
 		$.ajax({
             type: "POST",

@@ -20,6 +20,13 @@
 	<script type="text/javascript" src="js/main.js"></script>
 	<!--引入分页插件 -->
 	<script type="text/javascript" src="js/jquery.twbsPagination.js"></script>
+	<!--引入jquery media插件 -->
+	<script type="text/javascript" src="js/jquery.media.js"></script>  
+	<script type="text/javascript">  
+	    $(function() {  
+	        $('a.media').media({width:467, height:606});  
+	    });  
+	</script>  
 	<title>搜索</title>
 </head>
 
@@ -32,7 +39,7 @@
 					<!-- <div class="header-logo"> -->
 						<div class="navbar-header col-lg-2">
 							
-							<a href="#" class="navbar-brand "><strong>首 页</strong></a>
+							<a href="index.html" class="navbar-brand "><strong>首 页</strong></a>
 							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
 								<span class="sr-only">Toggle navigation</span>
 								<span class="icon-bar"></span>
@@ -48,8 +55,8 @@
 								<ul class="nav navbar-nav">
 									<li><a href="video.html">视频</a></li>
 									<li><a href="audio.html">音频</a></li>
-									<li><a href="#">图像</a></li>
-									<li><a href="#">文档</a></li>
+									<li><a href="picture.html">图像</a></li>
+									<li><a href="document.html">文档</a></li>
 								</ul>
 							</div><!-- header-nav结束 -->	
 
@@ -87,13 +94,11 @@
 			<div class="contet-audio row">
 				<div class="col-lg-12">
 					<ul class="nav nav-tabs nav-pills">
-						<li class="active"><a href="#view" data-toggle="tab" >播放量</a></li>
-						<li><a href="#download" data-toggle="tab" onclick="getDownloadByAjax()">下载量</a></li>
-						<li><a href="#time" data-toggle="tab">上传时间</a></li>
-						<li><a href="#general" data-toggle="tab">综合</a></li>
+						<li class="active"><a href="#download" data-toggle="tab" >下载量</a></li>
+						<li id="uploadTime"><a href="#time">上传时间</a></li>
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane active" id="view">
+						<div class="tab-pane active" id="download">
 							<table class="table table-striped  table-hover">
 								<thead>
 									<tr>
@@ -103,16 +108,18 @@
 										<th>上传时间</th>
 										<th>收藏</th>
 										<th>下载</th>
+										<th>预览</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="downloadTable">
 									<tr>
 										<td>001</td>
-										<td>年轮</td>
+										<td>年轮 </td>
 										<td>Tom</td>
 										<td>2015.07.23</td>
-										<td><button class="btn btn-info" type="button">收藏</button></td>
-										<td><button class="btn btn-info" type="button">下载</button></td>
+										<td><button class="btn btn-info" type="button" onclick="collectResult()">收藏</button></td>
+										<td><button class="btn btn-info" type="button" onclick="downloadRequest(id)">下载</button></td>
+										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#shiting">试听</button></td>
 									</tr>
 									<tr>
 										<td>002</td>
@@ -121,6 +128,7 @@
 										<td>2015.07.23</td>
 										<td><button class="btn btn-info" type="button">收藏</button></td>
 										<td><button class="btn btn-info" type="button">下载</button></td>
+										<td><button class="btn btn-info" type="button">试听</button></td>
 									</tr>
 									<tr>
 										<td>003</td>
@@ -129,18 +137,20 @@
 										<td>2015.07.23</td>
 										<td><button class="btn btn-info" type="button">收藏</button></td>
 										<td><button class="btn btn-info" type="button">下载</button></td>
+										<td><button class="btn btn-info" type="button">试听</button></td>
 									</tr>
 								</tbody>
 							</table>
 							<!-- 分页 -->
 							<div class="container">
 								<div class="row col-lg-6 col-lg-offset-3">
-									<ul class="pagination" id="viewPages">
+									<ul class="pagination" id="downloadPages">
 									</ul>
 								</div>
 							</div>
-						</div>
-						<div class="tab-pane" id="download">
+						</div><!-- 下载量结束-->
+
+						<div class="tab-pane" id="time">
 							<table class="table table-striped  table-hover">
 								<thead>
 									<tr>
@@ -152,7 +162,7 @@
 										<th>下载</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="timeTable">
 									<tr>
 										<td>001</td>
 										<td>年轮</td>
@@ -167,18 +177,12 @@
 							<!-- 分页 -->
 							<div class="container">
 								<div class="row col-lg-6 col-lg-offset-3">
-									<ul class="pagination" id="downloadPages">
+									<ul class="pagination" id="uploadTimePages">
 									</ul>
 								</div>
 							</div>
 
-						</div>
-						<div class="tab-pane" id="time">
-							上传时间
-						</div>
-						<div class="tab-pane" id="general">
-							综合
-						</div>
+						</div><!-- 上传时间-->
 					</div>
 				</div>
 			</div>
@@ -186,36 +190,165 @@
 	</div>	
 
 
+<input type="hidden" value="1" id="downloadNowPage">
+<input type="hidden" value="1" id="timeNowPage">
+
+
+<div class="modal fade" id="shiting">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title">试听</h2>
+            </div>
+             <div class="modal-body">
+				<audio src="love in ccnu.mp3" controls  id="music">不支持html5</audio>
+             </div>
+             <div class="modal-footer">
+             	<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="alert(123)">下载</button>
+             	<button type="button" class="btn btn-primary" data-dismiss="modal" onclick="alert(123)">收藏</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+   <div class="modal" id="collectStatus">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p>收藏</p>
+            </div>
+            <div class="modal-body">
+				
+				<p class="collectStatus">收藏成功</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 
+	<script type="text/javascript">
 
+	function downloadRequest(id){
+		window.location.href="#?"+id;
+	}
 
-	
+			function collectResult(){
+				$.ajax({
+		            type: "POST",
+		            url: "#",
+		            dataType: "json",
+		            data: {
+		                resourceId : resourceId
+		            },
+		            success: function(data)
+		            {
+		                if (data.status)
+		                {
+		          //           $("#addCollect").removeClass("dispaly");
+		          //           $("#addCollect").addClass("none");
+		          //           $(".collectStatus").text("收藏成功");
+		      				// alertCollectStatus();
+		      				// $("#deleteCollect").removeClass("none");
+		          //           $("#deleteCollect").addClass("dispaly");
+		                }
+		                else
+		                {
+		                	// $(".collectStatus").text("收藏失败");
+		                 //    alertCollectStatus();
+		                }
+		            },
+		            error: function()
+		            {
+		            	// $(".collectStatus").text("收藏失败");
+		             //    alertCollectStatus();
+		            }
+		        });
+			}
+	</script>
 
 	<script type="text/javascript">
 
 		$(document).ready(function () {
-		    $('#viewPages').twbsPagination({
-		        totalPages: 30,
-		        visiblePages: 5,
-		        version: '1.1',
-		        onPageClick: function (event, page) {
-		            $('#page-content').text('Page ' + page);
+
+			
+
+			function getSearchDataByAjax(url, id){
+				$.getJSON(url, function(data){
+					//获取数据并嵌入到html中
+				});
+			}
+
+			function setData(url, id){
+				$("#"+id+"Table").html("");
+				getSearchDataByAjax(url+'?page='+$("#"+id+"NowPage").val(),'download');
+
+
+				$('#'+id+'Pages').twbsPagination({
+			        totalPages: 30,
+			        visiblePages: 5,
+			        version: '1.1',
+			        onPageClick: function (event, page) {
+			            $('#page-content').text('Page ' + page);
+			            $("#"+id+"NowPage").val(page);
+			            if(page > 1){
+			         		$("#"+id+"Table").html("");
+			         		getSearchDataByAjax(url+'?page='+$("#"+id+"NowPage").val(),'download');
+			         	}
+			         }
+			     });
+			}
+
+			$("#uploadTime a").click(function(e){
+				e.preventDefault();
+			    $(this).tab("show");
+				setData("upload");
+			});
+
+			getSearchDataByAjax(url,id);
+			$('#downloadPages').twbsPagination({
+			    totalPages: 20,
+			    visiblePages: 5,
+			    version: '1.1',
+			    onPageClick: function (event, page) {
+			        $('#page-content').text('Page ' + page);
+			        $("#downloadNowPage").val(page);
+
+			        if(page > 1){
+		         		$("#"+id+"Table").html("");
+		         		getSearchDataByAjax(url+'?page='+$("#"+id+"NowPage").val(),'download');
+		         	} 
+			    }     
+			});
+
+
+		    // $('#downloadPages').twbsPagination({
+		    //     totalPages: 30,
+		    //     visiblePages: 5,
+		    //     version: '1.1',
+		    //     onPageClick: function (event, page) {
+		    //         $('#page-content').text('Page ' + page);
 		         
-		        }
-		    });
+		    //     }
+		    // });
 
 
-		    $('#downloadPages').twbsPagination({
-		        totalPages: 30,
-		        visiblePages: 5,
-		        version: '1.1',
-		        onPageClick: function (event, page) {
-		            $('#page-content').text('Page ' + page);
+		    // $('#uploadTimePages').twbsPagination({
+		    //     totalPages: 30,
+		    //     visiblePages: 5,
+		    //     version: '1.1',
+		    //     onPageClick: function (event, page) {
+		    //         $('#page-content').text('Page ' + page);
 		            
-		        }
-		    });
+		    //     }
+		    // });
 		    
 		});
 

@@ -4,11 +4,13 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--引入bootstrap CSS样式  -->
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css"/>
     <!--引入自定义样式  -->
-    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css"/>
 	<!--引入bootstrapValidator样式  -->
-    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css"/>
+    <!-- 引入播放条样式-->
+    <link rel="stylesheet" href="css/musicplaystyle.css" type="text/css"/>
 	<!--引入jquery  -->
 	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
 	<!--引入bootstrap JS插件 -->
@@ -21,6 +23,11 @@
 	<!--引入分页插件 -->
 	<script type="text/javascript" src="js/jquery.twbsPagination.js"></script>
 	<title>音频</title>
+	<style type="text/css">
+		.body{
+			padding-top: 70px;
+		}
+	</style>
 </head>
 <body>
 	<div class="header">
@@ -45,9 +52,9 @@
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
 									<li><a href="video.html">视频</a></li>
-									<li><a href="audio.html">音频</a></li>
-									<li><a href="#">图像</a></li>
-									<li><a href="#">文档</a></li>
+									<li class="active"><a href="audio.html">音频</a></li>
+									<li><a href="picture.html">图像</a></li>
+									<li><a href="document.html">文档</a></li>
 								</ul>
 							</div><!-- header-nav结束 -->	
 
@@ -81,243 +88,163 @@
 	</div><!-- header结束-->
 <!-- ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
 
-	<div class="wrap">
+	<div class="wrap" style="margin-top:50px;">
 		<div class="container audio-backcolor">
 			<div class="contet-audio row">
 				<div class="col-lg-12">
-					<ul class="nav nav-tabs nav-pills">
-						<li class="active"><a href="#play" data-toggle="tab" >播放量</a></li>
-						<li><a href="#download" data-toggle="tab" onclick="getDownloadByAjax()">下载量</a></li>
-						<li><a href="#time" data-toggle="tab">上传时间</a></li>
-						<li><a href="#general" data-toggle="tab">综合</a></li>
-					</ul>
-					<div class="tab-content">
-						<div class="tab-pane active" id="play">
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-						</div>
-						<div class="tab-pane" id="download">
-							下载量
-						</div>
-						<div class="tab-pane" id="time">
-							上传时间
-						</div>
-						<div class="tab-pane" id="general">
-							综合
-						</div>
+					
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_1"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_2"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_3"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_4"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_1"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_2"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_3"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_4"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_1"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_2"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_3"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
+					</div>
+					<div class="movie-info">
+						<a href="javascript:void(0)" id="movie_4"><img src="images/movie-1.jpg" alt="" /></a>
+						<div></div>
+						<span class="movie-info-name">影片名称</span>
+						<span class="movie-info-view">浏览量</span>
 					</div>
 				</div>
 			</div>
+			<!-- 分页 -->
+			<div class="container">
+				<div class="row col-lg-6 col-lg-offset-3">
+					<ul class="pagination" id="pages"></ul>
+				</div>
+			</div><!-- 分页 -->
+		</div>	
+	</div>	
+
+<!-- 播放器 ///////////////////////////////////////////////////////////////////  -->
+
+
+
+
+	<div class="music_wrap">
+		<div class="artist_info">
+			<div class="artist_avatar"></div>
 		</div>
 
+		<div class="track">
+			<a class="music_name">歌曲</a>	
+		</div>
 
-		<!-- 分页 -->
-		<div class="container">
-			<div class="row col-lg-6 col-lg-offset-3">
-				<ul class="pagination" id="pages">
-
-				<input type="hidden" id="nowPage" name="nowPage" value="1">
-
-				<!-- <ul class="pagination pagination">
-				  <li><a href="javascript:void(0);" onclick="page(1)" id="first">首页</a></li>
-				  <li  class="disabled"><a href="javascript:void(0);" onclick="page(previous)" id="previous">上一页</a></li>
-				  <li class="active"><a href="javascript:void(0);" onclick="page(1)" id="page1">1</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(2)" id="page2">2</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(3)" id="page3">3</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(4)" id="page4">4</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(5)" id="page5">5</a></li>
-				  <li><a href="javascript:void(0);" onclick="nextPage()" id="next">下一页</a></li>
-				  <li><a href="#">尾页</a></li>
-				</ul>  -->
-
+		<div class="control">
+			<div class="option">
+				<div class="time">-00:00</div>
+				<div class="volume" title="音量">
+					<p>&#xe604;</p>
+				</div>
+				<div class="volume_wrap hidden">
+					<div class="volume_bar">
+						<div class="volume_now"></div>
+					</div>
+				</div>
+                <div class="progress_bar" id="bar">
+				<div class="progress progress-striped">
+					<div class="progress-bar progress-bar-info active" style="width:100%"></div>
+				</div>
+				<div class="buffer"></div>
+			</div>
+				<ul id="option_list">
+					<li class="repeat" title="单曲循环">&#xe609;</li>
+					<li class="shuffle" title="随机播放">&#xe608;</li>
+					<li class="list" title="列表循环">&#xe606;</li>
 				</ul>
+			</div>
 
+			
+
+		  <div class="action_button">
+				<div class="prev1" title="上一首">&#xe60d;</div>
+			  <div class="play1" title="播放" id="play">&#xe60a;</div>
+			  <div class="pause hidden" title="暂停">&#xe60b;</div>
+				<div class="next1" title="下一首">&#xe60c;</div>
 			</div>
 		</div>
 
+		<audio id="audio">
+			<p>您的浏览器不支持HTML5播放器!</p>
+		</audio>
+	</div>
+<script type="text/javascript" src="js/musicindex.js"></script>
 
-	</div>	
-
-
-
+<script type="text/javascript" src="js/musiclist.js"></script>
 
 
 <script type="text/javascript">
 
-	// function page(page1){
-	// 	var nowPage = getNowPage();
 
-	// 	if (nowPage > page1) {
-
-	// 		addActive(nowPage);
-	// 	}
-	// 	else{
-	// 		setNowPage(page1);
-	// 		addActive(page1);
-	// 	}
-	// }
-	
-	// //获取隐藏域的值
-	// function getNowPage(){
-	// 	return $("#nowPage").val();
-	// }
-
-	// //给隐藏域赋值
-	// function setNowPage(page){
-	// 	$("#nowPage").val(page);
-	// }
-
-
-
-	// //求余
-	// function getCompliment(page){
-	// 	if (page % 5 == '0') {
-	// 		return 5;
-	// 	}
-	// 	else{
-	// 		return (page % 5);
-	// 	}		
-	// }
-
-
-	// //添加active样式
-	// function addActive(page){
-
-	// 	if(page > 1){
-	// 		$("#previous").parent().removeClass();
-	// 	}
-	// 	else{
-	// 		$("#previous").parent().addClass("disabled");
-	// 	}
-	// 	var devide = parseInt(page/5);
-	// 	var j = 1;
-	// 	for(var i= devide*5+1; i< (devide+1)*5; i++)
-	// 	{
-	// 		$('#page'+j).text(i);
-	// 		j++;
-	// 	}
-
-	// 	for(var page1=1; page1<=5; page1++)
-	// 	{
-	// 		$("#page"+page1).parent().removeClass();
-	// 	}
-	// 	var activePage = getCompliment(page);
-	// 	$("#"+"page"+activePage).parent().addClass("active");
-	// }
-
-
-	// //点击下一页时
-	// function nextPage(){
-	// 	var page = getNowPage();
-	// 	page++;
-	// 	setNowPage(page);
-	// }
-	
-	$(document).ready(function () {
-	    $('#pages').twbsPagination({
-	        totalPages: 30,
-	        visiblePages: 5,
-	        version: '1.1',
-	        onPageClick: function (event, page) {
-	            $('#page-content').text('Page ' + page);
-	            
-	        }
-	    });
+	$('#pages').twbsPagination({
+	    totalPages: 30,
+	    visiblePages: 5,
+	    version: '1.1',
+	    onPageClick: function (event, page) {
+	        $('#page-content').text('Page ' + page);
+	    }
 	});
+
 </script>
 
 

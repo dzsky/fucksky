@@ -47,8 +47,8 @@
 								<ul class="nav navbar-nav">
 									<li><a href="video.html">视频</a></li>
 									<li><a href="audio.html">音频</a></li>
-									<li><a href="#">图像</a></li>
-									<li><a href="#">文档</a></li>
+									<li><a href="picture.html">图像</a></li>
+									<li><a href="document.html">文档</a></li>
 								</ul>
 							</div><!-- header-nav结束 -->	
 
@@ -97,15 +97,15 @@
 		  			</ol>
 		  			<div class="carousel-inner" role="listbox">
 		   	 			<div class="item active">
-			  				<img src="images/1.jpg" alt="...">
+			  				<a href="videoPlay.html"><img src="images/1.jpg" alt="..."></a>
 			  				<div class="carousel-caption">
-			    				小花
+			    				饥饿游戏
 			  				</div>
 		    			</div>
 		    			<div class="item">
 			      			<img src="images/2.jpg" alt="...">
 			     	 			<div class="carousel-caption">
-			        			落叶
+			        			灵魂尽头
 			      			</div>
 		    			</div>
 		    			<div class="item">
@@ -135,7 +135,7 @@
 			<!-- <div class="container"> -->
 			<div class="content-movie row col-lg-12 ">
 				<ul class="nav nav-tabs">
-					<li><a href="#hot" data-toggle="tab">热门</a></li>
+					<li class="active"><a href="#hot" data-toggle="tab">热门</a></li>
 					<li><a href="#new" data-toggle="tab">最新</a></li>
 				</ul>
 				<div class="tab-content">
@@ -416,7 +416,7 @@
 					        <div class="row">
 					            <!-- form: -->
 					            <section>
-					                <div class="col-lg-8 col-lg-offset-2">
+					                <div class="col-lg-6 col-lg-offset-2">
 					                    <div class="page-header">
 					                        <h2>登录</h2>
 					                    </div>
@@ -425,7 +425,7 @@
 					                        <div class="form-group">
 					                            <label class="col-lg-3 control-label">Email</label>
 					                            <div class="col-lg-5">
-					                                <input type="text" class="form-control" name="email" />
+					                                <input type="text" class="form-control" name="email" id="email"/>
 					                            </div>
 					                        </div>
 
@@ -462,7 +462,7 @@
 					        <div class="row">
 					            <!-- form: -->
 					            <section>
-					                <div class="col-lg-8 col-lg-offset-2">
+					                <div class="col-lg-6 col-lg-offset-2">
 					                    <div class="page-header">
 					                        <h2>注册</h2>
 					                    </div>
@@ -501,7 +501,7 @@
 					                        <div class="form-group">
 					                            <label class="col-lg-3 control-label" id="rgsCaptchaOperation"></label>
 					                            <div class="col-lg-2">
-					                                <input type="text" class="form-control" name="rgsCaptcha" />
+					                                <input type="text" class="form-control" name="rgsCaptcha"  size="50%" length="10%"/>
 					                            </div>
 					                        </div>
 
@@ -580,8 +580,15 @@
                         	message: 'Email不能为空'
                     	},
                     	remote: {
-	                        url: '#',
+	                        url: 'login.php',
 	                        type: 'POST',  
+	                        // data:
+	                        // {
+	                        // 	email:function()
+	                        // 	{
+	                        // 		return $("#email").val();
+	                        // 	}
+	                        // }
 	                        message: 'Email错误'
 	                    }
 	                }

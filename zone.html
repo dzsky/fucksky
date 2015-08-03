@@ -108,152 +108,112 @@
 					<div class="col-lg-12">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#upload" data-toggle="tab" >上传资源</a></li>
-							<li><a href="#myUpload" data-toggle="tab" >我的上传</a></li>
-							<li><a href="#downloadRecord" data-toggle="tab" onclick="getDownloadByAjax()">下载记录</a></li>
-							<li><a href="#collection" data-toggle="tab">我的收藏</a></li>
+							<li id="myUpload"><a href="#myUploadContent">我的上传</a></li>
+							<li id="downloadRecord"><a href="#downloadRecordContent">下载记录</a></li>
+							<li id="commentRecord"><a href="#commentRecordContent">评论记录</a></li>
+							<li id="collection"><a href="#collectionContent">我的收藏</a></li>
 						</ul>
 						<div class="tab-content">
 							<div class="tab-pane active" id="upload">
 								<form enctype="multipart/form-data" method="post" action="upload.php">
 									<input id="input-upload" type="file" name="file" multiple class="file-loading">
-
 								</form>
 								<!-- multiple class="file-loading" -->
-
 							</div><!--upload结束 -->
-							<div class="tab-pane" id="myUpload">
-								<table class="table table-striped  table-hover">
-								<thead>
-									<tr>
-										<th>序号</th>
-										<th>名称</th>
-										<th>类型</th>
-										<th>上传时间</th>
-										<th>浏览量</th>
-										<th>操作</th>
-									</tr>
-								</thead>
-								<tbody>
-									
-									<tr>
-										<td>001</td>
-										<td>年轮</td>
-										<th>视频</th>
-										<td>2015.07.23</td>
-										<td>108</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
 
-									<tr>
-										<td>002</td>
-										<td>年轮</td>
-										<th>音频</th>
-										<td>2015.07.23</td>
-										<td>56</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-									<tr>
-										<td>003</td>
-										<td>年轮</td>
-										<th>图像</th>
-										<td>2015.07.23</td>
-										<td>24</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="container">
-								<div class="row col-lg-6 col-lg-offset-3">
-									<ul class="pagination" id="uploadPages">
-									</ul>
-								</div>
-							</div>
-							</div>
-							<div class="tab-pane" id="downloadRecord">
+							<div class="tab-pane" id="myUploadContent">
 								<table class="table table-striped  table-hover">
-								<thead>
-									<tr>
-										<th>序号</th>
-										<th>名称</th>
-										<th>类型</th>
-										<th>下载时间</th>
-										<th>操作</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>001</td>
-										<td>年轮</td>
-										<th>视频</th>
-										<td>2015.07.23</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-									<tr>
-										<td>002</td>
-										<td>年轮</td>
-										<th>音频</th>
-										<td>2015.07.23</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-									<tr>
-										<td>003</td>
-										<td>年轮</td>
-										<th>图像</th>
-										<td>2015.07.23</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="container">
-								<div class="row col-lg-6 col-lg-offset-3">
-									<ul class="pagination" id="downloadPages">
-									</ul>
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>名称</th>
+											<th>类型</th>
+											<th>上传时间</th>
+											<th>浏览量</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="uploadTable">
+							
+									</tbody>
+								</table>
+								<div class="container">
+									<div class="row col-lg-6 col-lg-offset-3">
+										<ul class="pagination" id="uploadPages">
+										</ul>
+									</div>
 								</div>
-							</div>
+							</div><!-- 我的上传-->
+
+							<div class="tab-pane" id="downloadRecordContent">
+								<table class="table table-striped  table-hover">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>名称</th>
+											<th>类型</th>
+											<th>下载时间</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="downloadTable">
+										
+									</tbody>
+								</table>
+								<div class="container">
+									<div class="row col-lg-6 col-lg-offset-3">
+										<ul class="pagination" id="downloadPages">
+										</ul>
+									</div>
+								</div>
 							</div><!--downloadRecord结束 -->
 
-							<div class="tab-pane" id="collection">
+							<div class="tab-pane" id="commentRecordContent">
 								<table class="table table-striped  table-hover">
-								<thead>
-									<tr>
-										<th>序号</th>
-										<th>名称</th>
-										<th>类型</th>
-										<th>收藏时间</th>
-										<th>操作</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>001</td>
-										<td>年轮</td>
-										<th>视频</th>
-										<td>2015.07.23</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-									<tr>
-										<td>002</td>
-										<td>年轮</td>
-										<th>音频</th>
-										<td>2015.07.23</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-									<tr>
-										<td>003</td>
-										<td>年轮</td>
-										<th>图像</th>
-										<td>2015.07.23</td>
-										<td><button class="btn btn-info" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="container">
-								<div class="row col-lg-6 col-lg-offset-3">
-									<ul class="pagination" id="collectPages">
-									</ul>
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>资源名称</th>
+											<th>内容</th>
+											<th>评论时间</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="commentTable">
+										
+									</tbody>
+								</table>
+								<div class="container">
+									<div class="row col-lg-6 col-lg-offset-3">
+										<ul class="pagination" id="commentPages">
+										</ul>
+									</div>
 								</div>
-							</div>
+							</div><!--commentRecordContent结束 -->
+
+							<div class="tab-pane" id="collectionContent">
+								<table class="table table-striped  table-hover">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>名称</th>
+											<th>类型</th>
+											<th>收藏时间</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="collectTable">
+										
+									</tbody>
+								</table>
+								<div class="container">
+									<div class="row col-lg-6 col-lg-offset-3">
+										<ul class="pagination" id="collectPages">
+										</ul>
+									</div>
+								</div>
 							</div><!--download结束 -->
+
 						</div><!--content结束 -->
 					</div>
 				</div>
@@ -277,8 +237,8 @@
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="updateHeadPic">
-						<form action=".action" enctype="multipart/form-data" >
-							<input id="userInfoUpload" type="file">
+						<form enctype="multipart/form-data" method="post" action="upload.php">
+							<input id="userInfoUpload" type="file" name="file" multiple class="file-loading">
 						</form>
 					</div>
 					<div class="tab-pane" id="updateUsername">
@@ -358,6 +318,11 @@
 </div><!-- /.modal -->
 
 
+<input type="hidden" value="1" id="uploadNowPage">
+<input type="hidden" value="1" id="downloadNowPage">
+<input type="hidden" value="1" id="commentNowPage">
+<input type="hidden" value="1" id="collectNowPage">
+
 <script type="text/javascript">
 	// $("#test").mouseover(function(){
 	// 	$(".headPic").addClass("addHeadPic");
@@ -369,35 +334,143 @@
 	
 		$(document).ready(function () {
 
-		    $('#uploadPages').twbsPagination({
-		        totalPages: 30,
-		        visiblePages: 5,
-		        version: '1.1',
-		        onPageClick: function (event, page) {
-		            $('#page-content').text('Page ' + page);
-		         
-		        }
-		    });
+			function getUploadDataByAjax(url){
+				$.getJSON(url, function(data){
+	    			$.each(data, function(i, n){
+	    				$("#uploadTable").append(
+							"<tr>"
+							+	"<td>"+n.number+"</td>"
+							+	"<td>"+n.name+"</td>"
+							+	"<th>"+n.type+"</th>"
+							+	"<td>"+n.time+"</td>"
+							+	"<td>"+n.views+"</td>"
+							+	"<td><button class='btn btn-info' type='button' data-toggle='modal' data-target='#delete'>删除</button></td>"
+							+"</tr>"						
+	    				);
+	    			});
+	    		});
+			}
+
+			function getDownloadDataByAjax(url){
+				$.getJSON(url, function(data){
+					$.each(data, function(i, n){
+						$("#downloadTable").append(
+							"<tr>"
+							+	"<th>"+n.number+"</th>"
+							+	"<th>"+n.name+"</th>"
+							+	"<th>"+n.type+"</th>"
+							+	"<th>"+n.time+"</th>"
+							+	"<td><button class='btn btn-info' type='button' data-toggle='modal' data-target='#delete'>删除</button></td>"
+							+"</tr>"
+						);
+					});
+				});
+			}
+
+			function getCommentDataByAjax(url){
+				$.getJSON(url, function(data){
+					$.each(data, function(i, n){
+						$("#commentTable").append(
+							"<tr>"
+							+	"<th>"+n.number+"</th>"
+							+	"<th>"+n.name+"</th>"
+							+	"<th>"+n.comment+"</th>"
+							+	"<th>"+n.time+"</th>"
+							+	"<td><button class='btn btn-info' type='button' data-toggle='modal' data-target='#delete'>删除</button></td>"
+							+"</tr>"
+						);
+					});
+				});
+			}
+
+			function getCollectDataByAjax(url){
+				$.getJSON(url, function(data){
+					$.each(data, function(i, n){
+						$("#collectTable").append(
+							"<tr>"
+							+	"<th>"+n.number+"</th>"
+							+	"<th>"+n.name+"</th>"
+							+	"<th>"+n.type+"</th>"
+							+	"<th>"+n.time+"</th>"
+							+	"<td><button class='btn btn-info' type='button' data-toggle='modal' data-target='#delete'>删除</button></td>"
+							+"</tr>"
+						);
+					});
+				});
+			}
+			function setData(id){
+				$("#"+id+"Table").html("");
+				switch(id){
+					case 'upload':
+						getUploadDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+						break;
+					case 'download':
+						getDownloadDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+						break;
+					case 'comment':
+						getCommentDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+						break;
+					case 'collect':
+						getCollectDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+						break;
+				}
+		        
+		        $('#'+id+'Pages').twbsPagination({
+			        totalPages: 30,
+			        visiblePages: 5,
+			        version: '1.1',
+			        onPageClick: function (event, page) {
+			            $('#page-content').text('Page ' + page);
+			            $("#"+id+"NowPage").val(page);
+			         	if(page > 1){
+			         		$("#"+id+"Table").html("");
+			         		switch(id){
+								case 'upload':
+									getUploadDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+									break;
+								case 'download':
+									getDownloadDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+									break;
+								case 'comment':
+									getCommentDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+									break;
+								case 'collect':
+									getCollectDataByAjax('zone.php?action='+id+'&page='+$("#"+id+"NowPage").val());
+									break;
+							}
+			         		
+			         	}
+			        }
+			    });
+			}
 
 
-		    $('#downloadPages').twbsPagination({
-		        totalPages: 30,
-		        visiblePages: 5,
-		        version: '1.1',
-		        onPageClick: function (event, page) {
-		            $('#page-content').text('Page ' + page);
-		            
-		        }
-		    });
+			$("#myUpload a").click(function(e){
+				e.preventDefault();
+		        $(this).tab("show");
+		        setData('upload');
+			});
 
-		    $('#collectPages').twbsPagination({
-		        totalPages: 30,
-		        visiblePages: 5,
-		        version: '1.1',
-		        onPageClick: function (event, page) {
-		            $('#page-content').text('Page ' + page);      
-		        }
-		    });
+			$("#downloadRecord a").click(function(e){
+				e.preventDefault();
+		        $(this).tab("show");
+		        setData('download');
+			});
+
+			$("#commentRecord a").click(function(e){
+				e.preventDefault();
+		        $(this).tab("show");
+		        setData('comment');
+			});
+
+			$("#collection a").click(function(e){
+				e.preventDefault();
+		        $(this).tab("show");
+		        setData('collect');
+			});
+
+
+
 
 		    // 验证修改用户名的合法性
 		    $("#rename").bootstrapValidator({
@@ -511,8 +584,10 @@
 
 	$("#userInfoUpload").fileinput({
 			language: "zh",
-			browseClass: "btn btn-primary btn-block",
-			showCaption: false,
+			previewFileType: "image",
+			browseClass: "btn btn-success",
+			browseLabel: "头像",
+			browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
 			removeClass: "btn btn-danger",
 			removeLabel: "删除",
 			removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
@@ -521,8 +596,11 @@
 			uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
 			allowedFileExtensions : ['jpg', 'png','jpeg'],
 			maxFileSize: 1000,
-        	maxFilesNum: 1,
+        	maxFileCount: 1,
+        	uploadUrl: 'upload.php',
+        	uploadAsync: true,
 		});
+
 
 });
 	

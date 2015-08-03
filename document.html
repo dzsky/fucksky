@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--引入bootstrap CSS样式  -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <!--引入自定义样式  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+     <!--引入自定义样式  -->
+    <link rel="stylesheet" type="text/css" href="css/document.css">
+ 
+    
+	<!--引入bootstrapValidator样式  -->
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
+    <!--引入video css样式  -->
+    <link rel="stylesheet" href="css/video-style.css"/>
+	<!--引入jquery  -->
+	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
+	<!--引入bootstrap JS插件 -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<!--引入bootstrapValidator JS插件 -->
+	<script type="text/javascript" src="js/bootstrapValidator.js"></script> 
+	<script src="js/app.js"></script>
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
+	<!--引入分页插件 -->
+	<script type="text/javascript" src="js/jquery.twbsPagination.js"></script>
+
+    <script type="text/javascript" src="http://sources.ikeepstudying.com/js/jquery-1.8.3.min.js"></script>  
+    <script type="text/javascript" src="js/jquery.media.js"></script> 
+
+	<title>文档</title>
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default col-lg-12 navbar-fixed-top navbar-inverse" role="navigation">
+					<!-- <div class="header-logo"> -->
+						<div class="navbar-header col-lg-2">
+							
+							<a href="index.html" class="navbar-brand "><strong>首 页</strong></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+					<!-- </div> --><!-- header-logo结束 -->
+					
+					
+						<div class="collapse navbar-collapse " id="navbar-collapse-1">
+							<div class="header-nav">
+								<ul class="nav navbar-nav">
+									<li><a href="video.html">视频</a></li>
+									<li><a href="audio.html">音频</a></li>
+									<li><a href="picture.html">图像</a></li>
+									<li class="active"><a href="document.html">文档</a></li>
+								</ul>
+							</div><!-- header-nav结束 -->	
+
+							<form action="#" class="form-inline header-search" methed="post" id="search">
+								<div class="form-group">
+									<select class="form-control">
+
+								    	<option>全部</option>
+								    	<option>视频</option>
+								    	<option>音频</option>
+								    	<option>图像</option>
+								    	<option>文档</option>
+								  	</select>
+								 </div>
+								<div class="form-group">
+									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText" style="width:220px;"/>
+									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
+								</div>
+							</form>
+							<!-- header-search 结束-->	
+							<div class="header-zone-login btn-group">
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+							</div>
+						</div>	
+					</nav>			
+				</div>
+			
+		</div>
+	</div><!-- header结束-->
+   
+<!--/////////////////////////////////////////////////////////////////////////////////-->
+<!--     <div class="container">
+        <div class="row col-lg-12"> -->
+            <div class="box">
+                <div class="list-box">
+                    <ul class="list">
+                        <li class="list-1" id="list-1" style="background-position: 0px -26px"></li>
+                        <li class="list-2" id="list-2" style="background-position: -30px -26px"></li>
+                    </ul>
+                </div>
+                <div class="txt-box">
+                    <ul class="changelist">
+                        <li class="list-1-o">
+                            <div class="lesson-info">
+                                <a href="javascript:void(0)" onclick="forwadToViewPage(100001)"><img src="img/lesson.png" style="width: 200px"></a>
+                                <span style="color:#777;">上传者:
+                                 <span class="word-name">name</span>
+                                 <span class="word-time" style="">time</span>
+                                </span>
+                                <div>
+                                <p class="txt-style" name="txt-style">西游记</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-1-o">
+                            <div class="lesson-info">
+                                <a href="www.baidu.com"><img src="img/lesson.png" style="width: 200px"></a>
+                                <span style="color:#777;">上传者:
+                                 <span class="word-name">name</span>
+                                 <span class="word-time" style="">time</span>
+                                </span>
+                                <div>
+                                <p class="txt-style" name="txt-style">西游记</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-1-o">
+                            <div class="lesson-info">
+                                <a href="www.baidu.com"><img src="img/lesson.png" style="width: 200px"></a>
+                                <span style="color:#777;">上传者:
+                                 <span class="word-name">name</span>
+                                 <span class="word-time" style="">time</span>
+                                </span>
+                                <div>
+                                <p class="txt-style" name="txt-style">西游记</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-1-o">
+                            <div class="lesson-info">
+                                <a href="www.baidu.com"><img src="img/lesson.png" style="width: 200px"></a>
+                                <span style="color:#777;">上传者:
+                                 <span class="word-name">name</span>
+                                 <span class="word-time" style="">time</span>
+                                </span>
+                                <div>
+                                <p class="txt-style" name="txt-style">西游记</p>
+                                </div>
+                            </div>
+                        </li> 
+                        <li class="list-1-o">
+                            <div class="lesson-info">
+                                <a href="www.baidu.com"><img src="img/lesson.png" style="width: 200px"></a>
+                                <span style="color:#777;">上传者:
+                                 <span class="word-name">name</span>
+                                 <span class="word-time" style="">time</span>
+                                </span>
+                                <div>
+                                <p class="txt-style" name="txt-style">西游记</p>
+                                </div>
+                            </div>
+                        </li>       
+                    </ul>
+        	   </div>
+            </div>
+<!--         </div>
+    </div> -->
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+   
+
+        $(function() {  
+            $('.media').media({width:467, height:606});  
+        });  
+
+
+        function forwadToViewPage(id){
+            window.location.href+".action?resourceId=id";
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--引入bootstrap CSS样式  -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <!--引入自定义样式  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+	<!--引入bootstrapValidator样式  -->
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
+	<!--引入jquery  -->
+	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
+	<!--引入bootstrap JS插件 -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<!--引入bootstrapValidator JS插件 -->
+	<script type="text/javascript" src="js/bootstrapValidator.js"></script> 
+
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
+	
+	<title>登录</title>
+</head>
+<body style="background-color:#EAEAEA">
+	
+	 <div class="container" >
+        <div class="row">
+            <!-- form: -->
+            <section>
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="page-header">
+                        <h2>登录</h2>
+                    </div>
+
+                    <form id="loginForm" method="post" class="form-horizontal" action="#.action">
+                        
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">名称</label>
+                            <div class="col-lg-5">
+                                <input type="text" class="form-control" name="adminName" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label">密码</label>
+                            <div class="col-lg-5">
+                                <input type="password" class="form-control" name="password" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
+                            <div class="col-lg-2">
+                                <input type="text" class="form-control" name="captcha" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-9 col-lg-offset-3">
+                                <button type="submit" class="btn btn-primary" name="login" value="login" id="loginBtn">登录</button>
+                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <!-- :form -->
+        </div>
+    </div>
+
+<!-- 登录JS判定-->
+<script type="text/javascript">
+	$(document).ready(function() {
+   
+    	function randomNumber(min, max) {
+       		return Math.floor(Math.random() * (max - min + 1) + min);
+    	};
+
+    	$('#captchaOperation').html([randomNumber(1, 20), '+', randomNumber(1, 20), '='].join(' '));
+
+    	$('#loginForm').bootstrapValidator({
+        	message: '不可用',
+        	feedbackIcons: {
+            	valid: 'glyphicon glyphicon-ok',
+            	invalid: 'glyphicon glyphicon-remove',
+            	validating: 'glyphicon glyphicon-refresh'
+        	},
+        	fields: {
+
+	            adminName: {
+	            	message: '登录失败',
+	                validators: {
+	                    notEmpty: {
+                        	message: '管理员不能为空'
+                    	},
+                    	remote: {
+	                        url: '#',
+	                        type: 'POST',  
+	                        message: '登录失败'
+	                    }
+	                }
+	            },
+
+	            password: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '密码不能为空'
+	                    }
+	                }
+	            },
+          
+	            captcha: {
+	                validators: {
+	                    callback: {
+	                        message: '答案错误',
+	                        callback: function(value, validator) {
+	                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+	                            return value == sum;
+	                        }
+	                    }
+	                }
+	            }
+
+        	}
+    	});
+
+    	
+    	$('#loginBtn').click(function() {
+        	$('#loginForm').bootstrapValidator('validate');
+        	
+    	});
+
+    	$('#resetBtn').click(function() {
+        	$('#loginForm').data('bootstrapValidator').resetForm(true);
+    	});
+
+	});
+</script>
+
+				   
+</body>
+</html>

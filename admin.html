@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--引入bootstrap CSS样式  -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <!--引入自定义样式  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+	<!--引入jquery  -->
+	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
+	<!--引入bootstrap JS插件 -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<!--引入分页插件 -->
+	<script type="text/javascript" src="js/jquery.twbsPagination.js"></script>
+
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
+	
+	<title>后台管理</title>
+</head>
+<body style="background-color:#EAEAEA">
+	<div class="container">
+		<div class="row col-lg-4">
+			<h4>欢迎您：蓝天白云</h4>
+			<hr>
+		</div>	
+	</div>
+
+
+	<div class="container">
+		<div class="row col-lg-10">
+			<ul id="operate" class="nav nav-tabs nav-pills" role="tablist">
+			    <li class="active"><a href="#user" role="tab" data-toggle="tab">用户管理</a></li>
+			    <li><a href="#resource" role="tab" data-toggle="tab">资源管理</a></li>
+			    <li><a href="#shenhe" role="tab" data-toggle="tab">资源审核</a></li>
+			</ul>
+			<!-- 选项卡面板 -->
+			<div id="operateContent" class="tab-content">
+				<div class="tab-pane active" id="user">
+					<br>
+					<form  class="form-inline " >
+						<div class="form-group">
+							<input type="text" class="form-control " placeholder="输入用户名"  size="20" id="searchText"/>
+							<a href="javascript:void(0);" onclick="toSearchUser()"><span class="glyphicon glyphicon-search"></span></a>
+						</div>
+					</form>
+					<table class="table table-striped  table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>用户名</th>
+								<th>Email</th>
+								<th>注册时间</th>
+								<th>登陆时间</th>
+								<th>是否在线</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="userTable">
+							
+							<tr>
+								<td>001</td>
+								<td>年轮</td>
+								<th>123@163.com</th>
+								<td>2015.07.23</td>
+								<td>2015.07.23</td>
+								<td>是</td>
+								<td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
+							</tr>
+
+							<tr>
+								<td>002</td>
+								<td>年轮</td>
+								<th>123@163.com</th>
+								<td>2015.07.23</td>
+								<td>2015.07.23</td>
+								<td>是</td>
+								<td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
+							</tr>
+							<tr>
+								<td>003</td>
+								<td>年轮</td>
+								<th>123@163.com</th>
+								<td>2015.07.23</td>
+								<td>2015.07.23</td>
+								<td>是</td>
+								<td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="container">
+						<div class="row col-lg-6 col-lg-offset-2">
+							<ul class="pagination" id="userPages">
+							</ul>
+						</div>
+					</div>
+				</div><!-- 用户管理结束-->
+
+				<div class="tab-pane" id="resource">
+					<br>
+					<form action="#" class="form-inline " methed="post" id="searchUser">
+						<div class="form-group">
+							<input type="text" class="form-control " placeholder="输入Email"  size="20" id="searchText"/>
+							<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
+						</div>
+					</form>
+					<table class="table table-striped  table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>资源名</th>
+								<th>上传时间</th>
+								<th>浏览量</th>
+								<th>下载量</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody id="#">
+							
+							<tr>
+								<td>001</td>
+								<td>年轮</td>
+								<th>2015.07.23</th>
+								<td>233</td>
+								<td>14</td>
+								<td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
+							</tr>
+
+							<tr>
+								<td>002</td>
+								<td>年轮</td>
+								<th>2015.07.23</th>
+								<td>233</td>
+								<td>14</td>
+								<td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
+							</tr>
+							<tr>
+								<td>003</td>
+								<td>年轮</td>
+								<th>2015.07.23</th>
+								<td>233</td>
+								<td>14</td>
+								<td><button class="btn btn-warning" type="button" data-toggle="modal" data-target="#delete">删除</button></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="container">
+						<div class="row col-lg-6 col-lg-offset-2">
+							<ul class="pagination" id="checkResources">
+							</ul>
+						</div>
+					</div>
+				</div><!-- 资源管理结束-->
+				<div class="tab-pane" id="shenhe">
+					<table class="table table-striped  table-hover">
+						<thead>
+							<tr>
+								<th>资源名</th>
+								<th>上传时间</th>
+								<th>上传格式</th>
+								<th>查看</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>年轮</td>
+								<th>2015.07.23</th>
+								<td>mp3</td>
+								<td><a href="###">查看</a></td>
+							</tr>
+
+							<tr>
+								<td>年轮</td>
+								<th>2015.07.23</th>
+								<td>mp3</td>
+								<td><a href="###">查看</a></td>
+							</tr>
+							<tr>
+								<td>年轮</td>
+								<th>2015.07.23</th>
+								<td>mp3</td>
+								<td><a href="###">查看</a></td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="container">
+						<div class="row col-lg-6 col-lg-offset-2">
+							<ul class="pagination" id="shenhePage">
+							</ul>
+						</div>
+					</div>
+				</div><!-- 审核结束-->
+
+
+				
+			</div>	
+	</div>
+
+
+
+<div class="modal fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title">删除</h2>
+            </div>
+             <div class="modal-body">
+				<h4>确定要删除么，一旦删除，不可恢复</h4>
+             </div>
+             <div class="modal-footer">
+             	<button type="button" class="btn btn-primary"  onclick="confirmToDeleteUser()">确定</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+<div class="modal fade" id="searchResult">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h2 class="modal-title">查找</h2>
+            </div>
+             <div class="modal-body">
+				<h4 id="searchTishi">不能为空</h4>
+             </div>
+             <div class="modal-footer">
+             	
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<input type="hidden" value="1" id="toDeleteUserId">
+
+<script type="text/javascript">
+
+
+	/*
+	进行search操作
+	 */
+	function toSearchUser(){
+		var content = $("#searchText").val();
+		if (content == '') {
+			$("#searchResult").modal();
+		}
+		else{
+			$.ajax({
+				type: "POST",
+				url: "#",
+				dataType: "json",
+				data:
+				{
+					content: content
+				},
+				success: function(data)
+				{
+					if(data){
+						$("#userTable").html("");
+						$("#userPages").html("");
+						$("#userTable").append(
+							"<tr>"
+							+	"<td>"001"</td>"
+							+	"<td>"年轮"</td>"
+							+	"<th>"123@163.com"</th>"
+							+	"<td>"2015.07.23"</td>"
+							+	"<td>"2015.07.23"</td>"
+							+	"<td>"是"</td>"
+							+	"<td><button class='btn btn-warning' type='button' onclick='toDeleteUser(data.list.id)'>删除</button></td>"
+							+"</tr>"
+						);
+					}
+					else{
+						$("#searchTishi").text("找不到此用户");
+						$("#searchResult").modal();
+					}
+				},
+				error: function()
+				{
+
+					$("#searchTishi").text("服务器连接失败");
+					$("#searchResult").modal();
+				}
+			});
+		}
+	}
+
+
+
+function toDeleteUser(id){
+	val userId = id;
+	$("#toDeleteUserId").val(userId);
+}
+
+function confirmToDeleteUser(){
+
+	var userId = $("#toDeleteUserId").val();
+	alert(userId);
+	$.ajax({
+		url: "#",
+		dataType: "json",
+		data:
+		{
+			userId: userId
+		},
+		success: function(data)
+		{
+			if (data) {
+				alert("删除成功");
+			}
+			else{
+				alert("删除失败");
+			}
+		},
+		error: function()
+		{
+			alert("服务器连接失败");
+		}
+
+	});
+}
+
+$(document).ready(function () {
+    $('#checkUsers').twbsPagination({
+        totalPages: 30,
+        visiblePages: 5,
+        version: '1.1',
+        onPageClick: function (event, page) {
+            $('#page-content').text('Page ' + page);
+         
+        }
+    });
+
+    $('#checkResources').twbsPagination({
+        totalPages: 30,
+        visiblePages: 5,
+        version: '1.1',
+        onPageClick: function (event, page) {
+            $('#page-content').text('Page ' + page);
+         
+        }
+    });
+
+    $('#shenhePage').twbsPagination({
+        totalPages: 30,
+        visiblePages: 5,
+        version: '1.1',
+        onPageClick: function (event, page) {
+            $('#page-content').text('Page ' + page);
+         
+        }
+    });
+
+});
+
+</script>
+</body>
+</html>

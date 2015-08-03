@@ -122,7 +122,7 @@ span {margin-left: 0;}
 .wrap-videoPlay{
 	width: 100%;
 	padding-top: 20px;
-	padding-bottom: 50px;
+/*	padding-bottom: 50px;*/
 	background-color: #EAEAEA;
 }
 
@@ -131,14 +131,36 @@ span {margin-left: 0;}
 	margin-top: 30px;
 }
 
-.display{
+.display {
 	display: block;
 }
 
-.none{
+.none {
 	display: none;
 }
 
-.zone-update-margin{
+.zone-update-margin {
 	margin-top: 10px;
+}
+
+.waterfall {
+	width: 80%;
+
+}
+
+.wrap-picture {
+	margin-top: 10px;
+	margin-left: 7.5%;
+}
+
+	
+
+.picture {
+	width: 250px;
+	height: 250px;
+	float: left;
+}
+
+.comment-back-color{
+	background-color: #EAEAEA;
 }

@@ -1,0 +1,64 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.box{
+	width:90%;
+    height: auto;
+    margin: 0 auto;
+	mrgin:0 auto;
+}
+
+.txt-box{
+	margin:0 auto;
+		}
+.list-box{
+    margin: 0 auto;
+    width: 900px;
+    height: 42px;
+    border-bottom: 1px solid #eeeeee;
+}
+.txt-style{
+	font-size:16px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
+
+.list{
+    float: right;
+	right:10%;
+    padding-top: 10px;
+}
+.word-time{
+	float:right;
+	}
+
+.list-box ul li{
+    cursor: pointer;
+    width: 30px;
+    height: 26px;
+    float: left;
+    display: block;
+    background: url("../img/listype-icon.png") no-repeat;
+
+}
+
+.changelist .list-1-o{
+    height: 200px;
+    width: 200px;
+    border: 1px solid #aaaaaa;
+    float: left;
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+
+.changelist .list-2-v{
+	width:75%;
+    height: 200px;
+	margin-left:0px;
+	    margin: 0 auto;
+}
+

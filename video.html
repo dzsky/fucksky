@@ -9,8 +9,8 @@
     <link rel="stylesheet" href="css/main.css" type="text/css">
 	<!--引入bootstrapValidator样式  -->
     <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
-    <!--引入movie css样式  -->
-    <link rel="stylesheet" href="css/movie-style.css"/>
+    <!--引入video css样式  -->
+    <link rel="stylesheet" href="css/video-style.css"/>
 	<!--引入jquery  -->
 	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
 	<!--引入bootstrap JS插件 -->
@@ -46,10 +46,10 @@
 						<div class="collapse navbar-collapse " id="navbar-collapse">
 							<div class="header-nav">
 								<ul class="nav navbar-nav">
-									<li><a href="video.html">视频</a></li>
+									<li class="active"><a href="video.html" >视频</a></li>
 									<li><a href="audio.html">音频</a></li>
-									<li><a href="#">图像</a></li>
-									<li><a href="#">文档</a></li>
+									<li><a href="picture.html">图像</a></li>
+									<li><a href="document.html">文档</a></li>
 								</ul>
 							</div><!-- header-nav结束 -->	
 
@@ -93,217 +93,126 @@
 
 	<div class="wrap-movie" style="top:auto;">
 		<div class="container audio-backcolor">
-        
 			<div class="contet-audio row">
-            
 				<div class="col-lg-12">
-                <div class="g-doc">
-    <div class="g-bd">
-        <div class="g-mn">
-            <div class="m-slides">
-                <div class="imgwrap f-cb" id="imgwrap">
-                    <div class="banner banner-0" data-index="0"></div>
-                    <div class="banner banner-1" data-index="1"></div>
-                    <div class="banner banner-2" data-index="2"></div>
-                    <div class="banner banner-3" data-index="3"></div>
-                    <div class="banner banner-4" data-index="4"></div>
-                    <div class="banner banner-5" data-index="5"></div>
-                </div>
-            </div>
-            <div class="m-nav">
-                <div class="navswrap f-cb" id="navswrap">
-                    <div class="navwrap navwrap-0" data-index="0">
-                        <div class="nav"></div>
-                        <div class="prcsswrap">
-                            <div class="prcss"></div>
-                        </div>
-                    </div>
-                    <div class="navwrap navwrap-1" data-index="1">
-                        <div class="nav"></div>
-                        <div class="prcsswrap">
-                            <div class="prcss"></div>
-                        </div>
-                    </div>
-                    <div class="navwrap navwrap-2" data-index="2">
-                        <div class="nav"></div>
-                        <div class="prcsswrap">
-                            <div class="prcss"></div>
-                        </div>
-                    </div>
-                    <div class="navwrap navwrap-3" data-index="3">
-                        <div class="nav"></div>
-                        <div class="prcsswrap">
-                            <div class="prcss"></div>
-                        </div>
-                    </div>
-                    <div class="navwrap navwrap-4" data-index="4">
-                        <div class="nav nav-4"></div>
-                        <div class="prcsswrap">
-                            <div class="prcss"></div>
-                        </div>
-                    </div>
-                    <div class="navwrap navwrap-5" data-index="5">
-                        <div class="nav"></div>
-                        <div class="prcsswrap">
-                            <div class="prcss"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
+               		<div class="g-doc">
+					    <div class="g-bd">
+					        <div class="g-mn">
+					            <div class="m-slides">
+					                <div class="imgwrap f-cb" id="imgwrap">
+					                    <div class="banner banner-0" data-index="0"></div>
+					                    <div class="banner banner-1" data-index="1"></div>
+					                    <div class="banner banner-2" data-index="2"></div>
+					                    <div class="banner banner-3" data-index="3"></div>
+					                    <div class="banner banner-4" data-index="4"></div>
+					                    <div class="banner banner-5" data-index="5"></div>
+					                </div>
+					            </div>
+					            <div class="m-nav">
+					                <div class="navswrap f-cb" id="navswrap">
+					                    <div class="navwrap navwrap-0" data-index="0">
+					                        <div class="nav"></div>
+					                        <div class="prcsswrap">
+					                            <div class="prcss"></div>
+					                        </div>
+					                    </div>
+					                    <div class="navwrap navwrap-1" data-index="1">
+					                        <div class="nav"></div>
+					                        <div class="prcsswrap">
+					                            <div class="prcss"></div>
+					                        </div>
+					                    </div>
+					                    <div class="navwrap navwrap-2" data-index="2">
+					                        <div class="nav"></div>
+					                        <div class="prcsswrap">
+					                            <div class="prcss"></div>
+					                        </div>
+					                    </div>
+					                    <div class="navwrap navwrap-3" data-index="3">
+					                        <div class="nav"></div>
+					                        <div class="prcsswrap">
+					                            <div class="prcss"></div>
+					                        </div>
+					                    </div>
+					                    <div class="navwrap navwrap-4" data-index="4">
+					                        <div class="nav nav-4"></div>
+					                        <div class="prcsswrap">
+					                            <div class="prcss"></div>
+					                        </div>
+					                    </div>
+					                    <div class="navwrap navwrap-5" data-index="5">
+					                        <div class="nav"></div>
+					                        <div class="prcsswrap">
+					                            <div class="prcss"></div>
+					                        </div>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+					</div><!-- 轮播结束-->
+
 					<ul class="nav nav-tabs nav-pills">
-						<li class="active"><a href="#play" data-toggle="tab" >播放量</a></li>
-						<li><a href="#download" data-toggle="tab" onclick="getDownloadByAjax()">下载量</a></li>
-						<li><a href="#time" data-toggle="tab">上传时间</a></li>
-						<li><a href="#general" data-toggle="tab">综合</a></li>
+						<li class="active" id="byPlay"><a href="#play" >播放量</a></li>
+						<li id="byDownload"><a href="#download">下载量</a></li>
+						<li id="byTime"><a href="#time">上传时间</a></li>
+						<li id="byGeneral"><a href="#general">综合</a></li>
 					</ul>
 					<div class="tab-content">
+
 						<div class="tab-pane active" id="play">
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
+
+							<div class="container" id="plays">
+								<div class="row col-lg-6 col-lg-offset-3">
+									<ul class='pagination' id='playPages'></ul>
+								</div>
 							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
-							<div class="audio-info">
-								<img src="images/movie-1.jpg" alt=""/>
-								<div></div>
-								<span class="audio-info-name">音频名称</span>
-								<span class="audio-info-view">浏览量</span>
-							</div>
+
 						</div>
+
+
 						<div class="tab-pane" id="download">
-							下载量
+
+							<div class="container" id="downloads">
+								<div class="row col-lg-6 col-lg-offset-3">
+									<ul class='pagination' id='downloadPages'></ul>
+								</div>
+							</div>
+							
 						</div>
 						<div class="tab-pane" id="time">
-							上传时间
+							<div class="container" id="times">
+								<div class="row col-lg-6 col-lg-offset-3">
+									<ul class='pagination' id='timePages'></ul>
+								</div>
+							</div>
 						</div>
 						<div class="tab-pane" id="general">
-							综合
+							<div class="container" id="generals">
+								<div class="row col-lg-6 col-lg-offset-3">
+									<ul class='pagination' id='generalPages'></ul>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-		<!-- 分页 -->
-		<div class="container">
-			<div class="row col-lg-6 col-lg-offset-3">
-				<ul class="pagination" id="pages">
-
-				<!-- <ul class="pagination pagination">
-				  <li><a href="javascript:void(0);" onclick="page(1)" id="first">首页</a></li>
-				  <li  class="disabled"><a href="javascript:void(0);" onclick="page(previous)" id="previous">上一页</a></li>
-				  <li class="active"><a href="javascript:void(0);" onclick="page(1)" id="page1">1</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(2)" id="page2">2</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(3)" id="page3">3</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(4)" id="page4">4</a></li>
-				  <li><a href="javascript:void(0);" onclick="page(5)" id="page5">5</a></li>
-				  <li><a href="javascript:void(0);" onclick="nextPage()" id="next">下一页</a></li>
-				  <li><a href="#">尾页</a></li>
-				</ul>  -->
-
-
-
-			</div>
-		</div>
-
-
 	</div>	
 
-
+<input type="hidden" value="1" id="playNowPage">
+<input type="hidden" value="1" id="downloadNowPage">
+<input type="hidden" value="1" id="timeNowPage">
+<input type="hidden" value="1" id="generalNowPage">
 
 
 
 <script type="text/javascript">
-	
+	//$("#playNowPage").val();//取值
+	//$("#playNowPage").val("10");//赋值
+
+
 	// function page(page1){
 	// 	addActive(page1);
 	// 	//var page = page1;
@@ -362,17 +271,114 @@
 	// 
 	//
 	
-	$(document).ready(function () {
-	    $('#pages').twbsPagination({
-	        totalPages: 30,
-	        visiblePages: 5,
-	        version: '1.1',
-	        onPageClick: function (event, page) {
-	            $('#page-content').text('Page ' + page);
-	           
-	        }
-	    });
+$(document).ready(function () {
+	    
+
+////测试dom加载后向后台请求后台数据////////////////////////////////////////////////////////////
+///
+	/*
+		从后台获取数据
+	 */
+	function getVideoInfoByAjax(url, id){
+		var url = url;
+		var id = id;
+	    $.getJSON(url, function(data){
+	    	$.each(data, function(i, n){
+	    		$("#"+id).before(
+	    			"<div class='audio-info' id='"+id+"ReadyToRefresh" +i+"'>"+"<img src='"+n.videoImage+"'/>"
+	    			+ "<div></div>"
+	    			+ "<span class='audio-info-name'>"+n.videoName+"</span>"
+	    			+ "<span class='audio-info-view'>"+n.videoViews+"</span>"
+	    			+"</div>"
+	    		);
+	    	});   	
+	    });  
+	}
+	
+	/*
+	嵌入数据
+	 */
+	function setData(id){
+    	for (var i = 1; i <= 12; i++) {
+    		$("#"+id+"sReadyToRefresh"+i).remove();
+    	};
+    
+    	getVideoInfoByAjax('video.php?page='+$("#"+id+"NowPage").val(), id+'s');
+    	
+        $('#'+id+'Pages').twbsPagination({
+			totalPages: 10,
+			visiblePages: 5,
+			version: '1.1',
+			onPageClick: function (event, page) {
+			    $('#page-content').text('Page ' + page);
+			    $("#"+id+"NowPage").val(page);
+			    if (page > 1) {		    	
+			    	for (var i = 1; i <= 12; i++) {
+			    		$("#"+id+"sReadyToRefresh"+i).remove();
+			    	};
+			    	getVideoInfoByAjax('video.php?page='+page, id+'s');
+			    };   
+			}
+
+		});
+	
+    }
+
+
+	getVideoInfoByAjax('video.php?page=1', 'plays');
+
+
+	$('#playPages').twbsPagination({
+	    totalPages: 20,
+	    visiblePages: 5,
+	    version: '1.1',
+	    onPageClick: function (event, page) {
+	        $('#page-content').text('Page ' + page);
+	        $("#playNowPage").val(page);
+
+
+	        if (page > 1) {
+	        	
+	        	for (var i = 1; i <= 12; i++) {
+	        		$("#playsReadyToRefresh"+i).remove();
+	        	};
+	        	getVideoInfoByAjax('video.php?page='+page, 'plays');
+	        }; 
+	    }     
 	});
+
+
+
+
+
+
+	$("#byPlay a").click(function(e){
+		e.preventDefault();
+        $(this).tab("show");
+ 		setData("play");
+	});
+
+    $("#byDownload a").click(function(e){
+    	e.preventDefault();
+    	$(this).tab("show");
+    	setData("download");
+ 	});
+
+    $("#byTime a").click(function(e){
+    	e.preventDefault();
+        $(this).tab("show");
+        setData("time");
+ 	});
+    
+ 	$("#byGeneral a").click(function(e){
+ 		e.preventDefault();
+        $(this).tab("show");
+ 		setData("general");
+ 	});
+    
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+});
 </script>
 
 
@@ -406,7 +412,6 @@
 
 
 
-</body>
-</html>
+
 </body>
 </html>

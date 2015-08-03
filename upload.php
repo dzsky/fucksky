@@ -18,9 +18,19 @@
 	// 	);
 	// echo json_encode($data);
 	// 
-	$data = array(
-		'name' => $fileName,
-		);
+	// $data = array(
+	// 	'name' => $fileName,
+	// 	);
 
-	echo json_encode($data);
+
+ // 	$data = array(
+	// 	'initialPreview' => "<img src='images/movie-1.jpg' class='file-preview-image' alt='Desert' title='Desert'>",
+	// 	);
+	// echo json_encode($data);
+	
+	
+	echo true;
+
+	
+	
 ?>

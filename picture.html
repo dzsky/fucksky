@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--引入bootstrap CSS样式  -->
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+    <!--引入自定义样式  -->
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+	<!--引入bootstrapValidator样式  -->
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css" type="text/css">
+    <!--引入lightbox样式 -->
+    <link rel="stylesheet" href="css/lightbox.css" type="text/css">
+	<!--引入jquery  -->
+	<script type="text/javascript" src="bootstrap/js/jquery-1.11.3.min.js"></script>
+	<!--引入bootstrap JS插件 -->
+	<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+	<!--引入bootstrapValidator JS插件 -->
+	<script type="text/javascript" src="js/bootstrapValidator.js"></script> 
+	<!--引入瀑布流 JS插件 -->
+	<script src="js/masonry.pkgd.min.js" type="text/javascript"></script>
+	<!--引入滑动 JS插件 -->
+    <script src="js/jquery.infinitescroll.min.js" type="text/javascript"></script>
+
+
+	<!--引入main.js -->
+	<script type="text/javascript" src="js/main.js"></script>
+
+	
+	<title>图像</title>
+
+
+	 <script type="text/javascript">
+
+
+        $(document).ready(function() {
+
+            $('.wrap').masonry({
+                itemSelector: '.picture',
+                gutterWidth: 15,
+                columnWidth: 10,
+                isFitWidth: true,
+                isAnimated:true,
+                isResizableL:true,
+                isRTL:false,
+                percentPosition: true,
+            });
+
+            $('.waterfall').infinitescroll({
+                navSelector: "#navigation-pic", //导航的选择器，会被隐藏
+                nextSelector: "#navigation-pic a", //包含下一页链接的选择器
+                itemSelector: ".picture", //你将要取回的选项(内容块)
+                debug: true, //启用调试信息
+                animate: true, //当有新数据加载进来的时候，页面是否有动画效果，默认没有
+                extraScrollPx: 50, //滚动条距离底部多少像素的时候开始加载，默认150
+                bufferPx: 40, //载入信息的显示时间，时间越大，载入信息显示时间越短
+                loadingImg: "img/ajax-loader.gif",
+                loadingText  : "正在加载中",
+                errorCallback: function() {
+                    alert('页面加载失败');
+                }, //当出错的时候，比如404页面的时候执行的函数
+                localMode: true, //是否允许载入具有相同函数的页面，默认为false
+                dataType: 'html',//可以是json
+//                template: function(data) {
+//                    //data表示服务端返回的json格式数据，这里需要把data转换成瀑布流块的html格式，然后返回给回到函数
+//                    return '';
+//                },
+                loading: {
+                    msgText: "加载中...",
+                    finishedMsg: '没有新数据了...',
+                    selector: '#loading' // 显示loading信息的div
+                }
+            }, function(newElems) {
+                //程序执行完的回调函数
+                var $newElems = $(newElems);
+                $('.wrap').masonry('appended', $newElems, true);
+            });
+
+        });
+    </script>
+
+</head>
+
+
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default col-lg-12 navbar-fixed-top navbar-inverse" role="navigation">
+					<!-- <div class="header-logo"> -->
+						<div class="navbar-header col-lg-2">
+							
+							<a href="index.html" class="navbar-brand "><strong>首 页</strong></a>
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+					<!-- </div> --><!-- header-logo结束 -->
+					
+					
+						<div class="collapse navbar-collapse " id="navbar-collapse">
+							<div class="header-nav">
+								<ul class="nav navbar-nav">
+									<li><a href="video.html">视频</a></li>
+									<li><a href="audio.html">音频</a></li>
+									<li class="active"><a href="picture.html">图像</a></li>
+									<li><a href="document.html">文档</a></li>
+								</ul>
+							</div><!-- header-nav结束 -->	
+
+							<form action="#" class="form-inline header-search" methed="post" id="search">
+								<div class="form-group">
+									<select class="form-control">
+
+								    	<option value="all">全部</option>
+								    	<option value="video">视频</option>
+								    	<option value="audio">音频</option>
+								    	<option value="picture">图像</option>
+								    	<option value="document">文档</option>
+								  	</select>
+								 </div>
+								<div class="form-group">
+									<input type="text" class="form-control " placeholder="视频/音频/图像/文档"  size="20" id="searchText"/>
+									<a href="javascript:void(0);" onclick="checkSearch()"><span class="glyphicon glyphicon-search"></span></a>
+								</div>
+							</form>
+							<!-- header-search 结束-->	
+							<div class="header-zone-login btn-group">
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">个人中心</span></button>
+								<button type="button" class="btn btn-info" data-toggle="modal" data-target=".login-reg">登录/注册</button>
+								<button type="button" class=" btn-group btn btn-primary "><span onclick="forwardToZone()">蓝天白云</span></button>
+							</div>
+						</div>	
+					</nav>			
+				</div>
+			
+		</div>
+	</div><!-- header结束-->
+
+	<div class="wrap wrap-picture">
+		<!-- <div class="container index-backcolor">
+			<div class="row col-lg-10 col-lg-offset-1"> -->
+				<div class="waterfall">
+
+					<div class="picture">
+						<a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-1.jpg" data-lightbox="example-1"><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-1.jpg" alt="image-1" /></a>	  
+					</div><!--picture-->
+
+					<div class="picture">     
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-2.jpg" data-lightbox="example-2" data-title="XXX"><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-2.jpg" alt="image-1"/></a>
+					  
+					</div><!--picture-->
+					  
+
+					<div class="picture"> 
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-3.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" alt=""/></a>
+					</div><!--picture--> 
+					
+					<div class="picture">      
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-4.jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-4.jpg" alt="" /></a>
+					</div><!--picture--> 
+
+					<div class="picture">      
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-5.jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-5.jpg" alt="" /></a>
+					</div><!--picture--> 
+					<div class="picture">     
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-6.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg" alt="" /></a>
+  					</div><!--picture--> 
+
+
+					
+					<div class="picture">
+						<a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-1.jpg" data-lightbox="example-1"><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-1.jpg" alt="image-1" /></a>	  
+					</div><!--picture-->
+					
+					<div class="picture"> 
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-3.jpg" data-lightbox="example-set" data-title="Click the right half of the image to move forward."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-3.jpg" alt=""/></a>
+					</div><!--picture--> 
+					
+					<div class="picture">      
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-4.jpg" data-lightbox="example-set" data-title="Or press the right arrow on your keyboard."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-4.jpg" alt="" /></a>
+					</div><!--picture--> 
+
+					<div class="picture">      
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-5.jpg" data-lightbox="example-set" data-title="The next image in the set is preloaded as you're viewing."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-5.jpg" alt="" /></a>
+					</div><!--picture--> 
+					<div class="picture">     
+					      <a class="example-image-link" href="http://lokeshdhakar.com/projects/lightbox2/images/image-6.jpg" data-lightbox="example-set" data-title="Click anywhere outside the image or the X to the right to close."><img class="example-image" src="http://lokeshdhakar.com/projects/lightbox2/images/thumb-6.jpg" alt="" /></a>
+  					</div><!--picture--> 
+					
+				</div><!--waterfall-->
+				<div id="loading">
+					<img src="images/loading.gif"><span>正在加载...</span>
+				</div>
+			<!--</div> row-->
+		<!--</div> container-->
+		 
+	</div><!-- wrap-->
+
+<div id="navigation-pic"><a href="page.php?page=1"></a></div>
+
+
+  	<!-- 引入lightbox插件-->
+	<script type="text/javascript" src="js/lightbox.min.js"></script>
+
+
+
+
+
+
+
+
+
+<!-- 登录注册弹出框-->
+	<div class="modal fade login-reg" tabindex="-1" role="dialog" aria-labelledby="LargeModalLabel" aria-hidden="true">
+    	<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				</div>
+				<ul id="myTab" class="nav nav-pills" role="tablist">
+				    <li class="active"><a href="#login" role="tab" data-toggle="pill">登录</a></li>
+				    <li><a href="#rgs" role="tab" data-toggle="pill">注册</a></li>
+				</ul>
+
+				<div id="myTabContent" class="tab-content">
+				    <div class="tab-pane fade in active" id="login">
+				    	<div class="container">
+					        <div class="row">
+					            <!-- form: -->
+					            <section>
+					                <div class="col-lg-6 col-lg-offset-2">
+					                    <div class="page-header">
+					                        <h2>登录</h2>
+					                    </div>
+
+					                    <form id="loginForm" method="post" class="form-horizontal" action="#">					                        
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">Email</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="email" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="password" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label" id="captchaOperation"></label>
+					                            <div class="col-lg-2">
+					                                <input type="text" class="form-control" name="captcha" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <div class="col-lg-9 col-lg-offset-3">
+					                                <button type="submit" class="btn btn-primary" name="login" value="login">登录</button>
+					                                <button type="button" class="btn btn-info" id="resetBtn">重置</button>
+					                            </div>
+					                        </div>
+					                    </form>
+					                </div>
+					            </section>
+					            <!-- :form -->
+					        </div>
+					    </div>
+				    </div><!-- login结束-->
+
+				    <div class="tab-pane fade" id="rgs">
+				    	<div class="container">
+					        <div class="row">
+					            <!-- form: -->
+					            <section>
+					                <div class="col-lg-6 col-lg-offset-2">
+					                    <div class="page-header">
+					                        <h2>注册</h2>
+					                    </div>
+
+					                    <form id="rgsForm" method="post" class="form-horizontal" action="#">
+					                        
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">用户名</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="username" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">Email</label>
+					                            <div class="col-lg-5">
+					                                <input type="text" class="form-control" name="rgsEmail" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="rgsPassword" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label">重复密码</label>
+					                            <div class="col-lg-5">
+					                                <input type="password" class="form-control" name="confirmPassword" />
+					                            </div>
+					                        </div>            
+
+					                        <div class="form-group">
+					                            <label class="col-lg-3 control-label" id="rgsCaptchaOperation"></label>
+					                            <div class="col-lg-2">
+					                                <input type="text" class="form-control" name="rgsCaptcha" />
+					                            </div>
+					                        </div>
+
+					                        <div class="form-group">
+					                            <div class="col-lg-9 col-lg-offset-3">
+					                                <button type="submit" class="btn btn-primary" name="signup" value="Sign up">注册</button>
+					                              
+					                                <button type="button" class="btn btn-info" id="rgsResetBtn">重置</button>
+					                            </div>
+					                        </div>
+					                    </form>
+					                </div>
+					            </section>
+					            <!-- :form -->
+					        </div>
+					    </div>
+				    </div><!-- rgs结束-->
+				</div>
+				<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+
+			</div><!-- content结束-->
+		</div><!-- /.modal-dialog结束 -->	
+	</div><!-- /.modal结束 -->
+
+
+
+
+	<!-- 搜索为空时弹出提示框-->
+	<div class="modal fade" id="searchModal"  tabindex="-1">
+	    <div class="modal-dialog">
+	    	<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title">出错啦</h4>
+				</div>
+				<div class="modal-body">
+					<p>搜索框内容不能为空</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>					
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+
+<!-- 登录JS判定-->
+<script type="text/javascript">
+	$(document).ready(function() {
+   
+    	function randomNumber(min, max) {
+       		return Math.floor(Math.random() * (max - min + 1) + min);
+    	};
+
+    	$('#captchaOperation').html([randomNumber(1, 20), '+', randomNumber(1, 20), '='].join(' '));
+
+    	$('#loginForm').bootstrapValidator({
+        	message: '不可用',
+        	feedbackIcons: {
+            	valid: 'glyphicon glyphicon-ok',
+            	invalid: 'glyphicon glyphicon-remove',
+            	validating: 'glyphicon glyphicon-refresh'
+        	},
+        	fields: {
+
+	            email: {
+	            	message: 'Email不可用',
+	                validators: {
+	                    emailAddress: {
+	                        message: '请输入有效的Email地址'
+	                    },
+	                    notEmpty: {
+                        	message: 'Email不能为空'
+                    	},
+                    	remote: {
+	                        url: '#',
+	                        type: 'POST',  
+	                        message: 'Email错误'
+	                    }
+	                }
+	            },
+
+	            password: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '密码不能为空'
+	                    }
+	                }
+	            },
+          
+	            captcha: {
+	                validators: {
+	                    callback: {
+	                        message: '答案错误',
+	                        callback: function(value, validator) {
+	                            var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+	                            return value == sum;
+	                        }
+	                    }
+	                }
+	            }
+
+        	}
+    	});
+
+    	
+    	$('#loginBtn').click(function() {
+        	$('#loginForm').bootstrapValidator('validate');
+        	
+    	});
+
+    	$('#resetBtn').click(function() {
+        	$('#loginForm').data('bootstrapValidator').resetForm(true);
+    	});
+
+	});
+</script>
+
+
+
+<!-- 注册JS判定-->
+<script type="text/javascript">
+	$(document).ready(function() {
+    
+    	function randomNumber(min, max) {
+       		return Math.floor(Math.random() * (max - min + 1) + min);
+    	};
+
+    	$('#rgsCaptchaOperation').html([randomNumber(1, 20), '+', randomNumber(1, 20), '='].join(' '));
+
+    	$('#rgsForm').bootstrapValidator({
+        	message: '不可用',
+        	feedbackIcons: {
+            	valid: 'glyphicon glyphicon-ok',
+            	invalid: 'glyphicon glyphicon-remove',
+            	validating: 'glyphicon glyphicon-refresh'
+        	},
+        	fields: {
+     
+            	username: {
+                	
+                	validators: {
+                    	notEmpty: {
+                        	message: '用户名不能为空'
+                    	},
+                    	stringLength: {
+                        	min: 6,
+                        	max: 20,
+                        	message: '用户名必须不少于6个字符，不多于20个字符'
+                    	},
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/,
+	                        message: '用户名只能包含中文、字母、数字和下划线'
+	                    }
+	                   
+                	}
+           	 	},
+
+	            rgsEmail: {
+	            	message: 'Email不可用',
+	                validators: {
+	                    emailAddress: {
+	                        message: '请输入有效的Email地址'
+	                    },
+	                    notEmpty: {
+                        	message: 'Email不能为空'
+                    	},
+                    	
+
+                    	remote: {
+	                        url: '#',
+	                        type: "post",
+	                        message: 'Email错误'
+	                    }
+	                }
+	            },
+
+	            rgsPassword: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '密码不能为空'
+	                    },
+	                    stringLength: {
+                        	min: 6,
+                        	max: 16,
+                        	message: '密码必须不少于6个字符，不多于16个字符'
+                    	},
+	                    regexp: {
+	                        regexp: /^[a-zA-Z0-9_]+$/,
+	                        message: '密码只能包含英文字母、数字和下划线'
+	                    },
+	                    identical: {
+	                        field: 'confirmPassword',
+	                        message: '密码和确认密码不一致'
+	                    },
+	                    different: {
+	                        field: 'username',
+	                        message: '密码不能和用户名一致'
+	                    }
+	                }
+	            },
+
+	            confirmPassword: {
+	                validators: {
+	                    notEmpty: {
+	                        message: '两次输入密码不一致'
+	                    },
+	                    identical: {
+	                        field: 'rgsPassword',
+	                        message: '密码和确认密码不一致'
+	                    },
+	                    different: {
+	                        field: 'username',
+	                        message: '密码不能和用户名一致'
+	                    }
+	                }
+	            },
+          
+	            rgsCaptcha: {
+	                validators: {
+	                    callback: {
+	                        message: '答案错误',
+	                        callback: function(value, validator) {
+	                            var items = $('#rgsCaptchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+	                            return value == sum;
+	                        }
+	                    }
+	                }
+	            }
+
+        	}
+    	});
+
+    	
+    	$('#rgsBtn').click(function() {
+        	$('#rgsForm').bootstrapValidator('validate');
+        	
+    	});
+
+    	$('#rgsResetBtn').click(function() {
+        	$('#rgsForm').data('bootstrapValidator').resetForm(true);
+    	});
+
+	});
+</script>
+
+
+</body>
+</html>
